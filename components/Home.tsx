@@ -49,16 +49,16 @@ const AnimatedCounter = ({ end, duration = 3000 }: { end: number; duration?: num
       const progress = timestamp - startTimeRef.current;
 
       if (progress < duration) {
-      // Easing function for smoother animation
-      const easeOutQuad = (t: number) => t * (2 - t);
-      const easedProgress = easeOutQuad(progress / duration);
+        // Easing function for smoother animation
+        const easeOutQuad = (t: number) => t * (2 - t);
+        const easedProgress = easeOutQuad(progress / duration);
 
-      countRef.current = Math.floor(easedProgress * end);
-      setCount(countRef.current);
-      requestAnimationFrame(animate);
+        countRef.current = Math.floor(easedProgress * end);
+        setCount(countRef.current);
+        requestAnimationFrame(animate);
       } else {
-      countRef.current = end;
-      setCount(end);
+        countRef.current = end;
+        setCount(end);
       }
     };
 
@@ -99,7 +99,7 @@ const Home = () => {
       stars: 5,
       imageSrc: "/view1.jpg",
       width: 300, // Define width
-      height: 200, 
+      height: 200,
       dark: true,
     },
     {
@@ -109,7 +109,7 @@ const Home = () => {
       stars: 5,
       imageSrc: "/view2.jpg",
       width: 300, // Define width
-      height: 200, 
+      height: 200,
       dark: false,
     },
     {
@@ -119,7 +119,7 @@ const Home = () => {
       stars: 4,
       imageSrc: "/view3.jpg",
       width: 300, // Define width
-      height: 200, 
+      height: 200,
       dark: true,
     },
     {
@@ -129,7 +129,7 @@ const Home = () => {
       stars: 5,
       imageSrc: "/view3.jpg",
       width: 300, // Define width
-      height: 200, 
+      height: 200,
       dark: false,
     },
     // Add more gyms for continuous scrolling
@@ -140,7 +140,7 @@ const Home = () => {
       stars: 4,
       imageSrc: "/view2.jpg",
       width: 300, // Define width
-      height: 200, 
+      height: 200,
       dark: false,
     },
     {
@@ -150,7 +150,7 @@ const Home = () => {
       stars: 5,
       imageSrc: "/view1.jpg",
       width: 300, // Define width
-      height: 200, 
+      height: 200,
       dark: true,
     },
   ];
@@ -169,12 +169,12 @@ const Home = () => {
 
       // Reset position when we reach the end to create infinite effect
       if (scrollContainer && scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 10) {
-      scrollContainer.scrollLeft = 0;
-      startTime = timestamp;
+        scrollContainer.scrollLeft = 0;
+        startTime = timestamp;
       } else {
-      if (scrollContainer) {
-        scrollContainer.scrollLeft = position;
-      }
+        if (scrollContainer) {
+          scrollContainer.scrollLeft = position;
+        }
       }
 
       animationId = requestAnimationFrame(scroll);
@@ -199,12 +199,12 @@ const Home = () => {
 
     return () => {
       cancelAnimationFrame(animationId);
- 
+
       if (scrollContainer) {
         scrollContainer.removeEventListener("mouseleave", handleMouseLeave);
         scrollContainer.removeEventListener("mouseleave", handleMouseLeave);
       }
-      
+
     };
   }, []);
 
@@ -268,37 +268,36 @@ const Home = () => {
     >
       <div className="relative w-full h-32">
         <div
-          className={`absolute inset-0 ${
-            card.dark ? "bg-gray-900" : "bg-white"
-          } flex items-center justify-center`}
+          className={`absolute inset-0 ${card.dark ? "bg-gray-900" : "bg-white"
+            } flex items-center justify-center`}
         >
-         {card.dark ? (
-  <Image
-    src={card.imageSrc}
-    alt={card.name}
-    layout="fill"
-    objectFit="contain"
-  />
-) : (
-  <Image
-    src={card.imageSrc}
-    alt={card.name}
-    layout="fill"
-    objectFit="cover"
-  />
-)}
+          {card.dark ? (
+            <Image
+              src={card.imageSrc}
+              alt={card.name}
+              layout="fill"
+              objectFit="contain"
+            />
+          ) : (
+            <Image
+              src={card.imageSrc}
+              alt={card.name}
+              layout="fill"
+              objectFit="cover"
+            />
+          )}
         </div>
       </div>
-  
+
       <div className="p-3">
         <h3 className="font-semibold text-sm truncate">{card.name}</h3>
         <p className="text-gray-500 text-xs mb-2">{card.location}</p>
-  
+
         <div className="flex items-center">{renderStars(card.stars)}</div>
       </div>
     </div>
   );
-  
+
 
   return (
     <div className="poppins space-y-5 mt-5">
@@ -375,11 +374,11 @@ const Home = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
+                <SelectItem value="apple">1</SelectItem>
+                <SelectItem value="banana">2</SelectItem>
+                <SelectItem value="blueberry">3</SelectItem>
+                <SelectItem value="grapes">4</SelectItem>
+                <SelectItem value="pineapple">5</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -554,9 +553,9 @@ const Home = () => {
 
       <h1 className="text-3xl font-semibold">Recent Listed</h1>
 
-      <div className="relative w-full overflow-hidden py-4">
+      <div className="w-full overflow-hidden py-4">
         {/* The outer container with hidden overflow */}
-        <div className="relative flex items-center mx-20">
+        <div className="flex w-full items-center">
 
           {/* Scrollable Container */}
           <div
@@ -592,7 +591,7 @@ const Home = () => {
         </div>
 
         {/* Optional fade effect on edges */}
-        
+
       </div>
 
       <div className="flex justify-between items-center pt-5">
@@ -698,17 +697,17 @@ const Home = () => {
               your last. In the tapestry of life, make every thread count.
             </span>
           </p>
-          <div className="border border-gray-300 rounded-full p-4 h-36 w-40 flex items-center justify-center">
+          <div className="border border-gray-300 rounded-full p-4 md:h-25 h-15 w-40 flex items-center justify-center">
             <Image src={preksis} alt="Preksis Logo" width={80} height={80} />
           </div>
-          <div className="border border-gray-300 rounded-full p-4 h-36 w-40 flex items-center justify-center">
+          <div className="border border-gray-300 rounded-full p-4 md:h-25 h-15 w-40 flex items-center justify-center">
             <Image
               src={ips}
               alt="Preksis Logo"
               className="object-contain rounded-full"
             />
           </div>
-          <div className="border border-gray-300 rounded-full p-4 h-36 w-40 flex items-center justify-center">
+          <div className="border border-gray-300 rounded-full p-4 md:h-25 h-15 w-40 flex items-center justify-center">
             <Image
               src={ips}
               alt="Preksis Logo"
