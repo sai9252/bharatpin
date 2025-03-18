@@ -1,10 +1,10 @@
-import Home from '@/components/Home'
+import Register from '@/components/Authentication/register'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      <Home/>
+      <Register/>
     </div>
   )
 }

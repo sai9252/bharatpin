@@ -1,10 +1,10 @@
-import Home from '@/components/Home'
+import Login from '@/components/Authentication/login'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      <Home/>
+      <Login/>
     </div>
   )
 }
