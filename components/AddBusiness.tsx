@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Cbook from "@/public/Cbook.jpg"
 import React from "react";
 import { IoFilterOutline } from "react-icons/io5";
 import { Label } from "@/components/ui/label";
@@ -151,11 +152,18 @@ const AddBusiness = () => {
 
   return (
     <div className="poppins space-y-7 mb-7 mt-5">
-      <div className="flex items-center justify-center">
-        <p className="text-sm md:text-base">
+      <div className='relative h-98'>      
+          <Image 
+            src={Cbook}
+            alt="Rankers Coaching Classes" 
+            layout="fill" 
+            priority
+            className="rounded-lg"
+          />
+        <p className="text-sm md:text-[20px] font-semibold bottom-15 absolute h-98 flex items-center justify-center w-full">
           HOME | <span className="text-orange-600/90">Coaching Institute</span>
         </p>
-      </div>
+        </div>
       <div className="border border-gray-300 rounded-md p-4 md:p-8 flex flex-col space-y-5">
         <div className="text-2xl md:text-3xl font-semibold">
           <h1>
@@ -455,7 +463,7 @@ const AddBusiness = () => {
                     >
                       <div className="flex flex-col md:flex-row items-start gap-4">
                         {/* Logo */}
-                        <Link href="/institute/[name]" target="_blank">
+                        <Link href="/institute" target="_blank">
                         <div className="w-20 h-20 md:w-24 md:h-24 flex-shrink-0 mx-auto md:mx-0">
                           <div className="relative w-full h-full">
                             <Image
@@ -472,7 +480,7 @@ const AddBusiness = () => {
                         {/* Institute info */}
                         <div className="flex-grow">
                           <div className="border-b-2 border-b-orange-600/90">
-                          <Link href="/institute/[name]" target="_blank">
+                          <Link href="/institute" target="_blank">
                             <h2 className="text-base md:text-lg font-semibold text-gray-800 flex items-center">
                               {institute.name}
                             </h2>
