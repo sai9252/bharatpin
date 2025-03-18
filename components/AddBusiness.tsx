@@ -16,6 +16,7 @@ import { IoFilterOutline } from "react-icons/io5";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
+import Link from "next/link";
 
 const AddBusiness = () => {
   const [activeButton, setActiveButton] = useState("all");
@@ -169,11 +170,11 @@ const AddBusiness = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
+                <SelectItem value="apple">1</SelectItem>
+                <SelectItem value="banana">2</SelectItem>
+                <SelectItem value="blueberry">3</SelectItem>
+                <SelectItem value="grapes">4</SelectItem>
+                <SelectItem value="pineapple">5</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -184,11 +185,11 @@ const AddBusiness = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
+                <SelectItem value="apple">KKD</SelectItem>
+                <SelectItem value="banana">Hyderabad</SelectItem>
+                <SelectItem value="blueberry">Chennai</SelectItem>
+                <SelectItem value="grapes">Vijayawada</SelectItem>
+                <SelectItem value="pineapple">Guntur</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -454,6 +455,7 @@ const AddBusiness = () => {
                     >
                       <div className="flex flex-col md:flex-row items-start gap-4">
                         {/* Logo */}
+                        <Link href="/institute/[name]" target="_blank">
                         <div className="w-20 h-20 md:w-24 md:h-24 flex-shrink-0 mx-auto md:mx-0">
                           <div className="relative w-full h-full">
                             <Image
@@ -465,13 +467,16 @@ const AddBusiness = () => {
                             />
                           </div>
                         </div>
+                        </Link>
   
                         {/* Institute info */}
                         <div className="flex-grow">
                           <div className="border-b-2 border-b-orange-600/90">
+                          <Link href="/institute/[name]" target="_blank">
                             <h2 className="text-base md:text-lg font-semibold text-gray-800 flex items-center">
                               {institute.name}
                             </h2>
+                            </Link>
                             <p className="text-xs md:text-sm text-gray-600 mb-2 flex items-center">
                               {institute.description}
                             </p>
