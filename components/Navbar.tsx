@@ -76,7 +76,7 @@ const Navbarpage = () => {
                       <div className="border-t border-orange-200 my-2"></div>
                     </>
                   )}
-                  <Link href="/add-business" className="flex items-center gap-2 text-orange-700 hover:text-orange-500 transition px-2 py-2 hover:bg-orange-100 rounded-md">
+                  <Link href="/addBusiness" className="flex items-center gap-2 text-orange-700 hover:text-orange-500 transition px-2 py-2 hover:bg-orange-100 rounded-md">
                     <Plus className="w-5 h-5" />
                     <span>Add Business</span>
                   </Link>
@@ -116,7 +116,8 @@ const Navbarpage = () => {
               </Link>
            
             <Link 
-              href="/add-business" 
+              href="/addBusiness" 
+              target="_parent"
               className="flex items-center gap-2 text-gray-700 hover:text-orange-600 transition font-medium"
             >
               <Plus className="w-5 h-5 text-orange-600/90" />

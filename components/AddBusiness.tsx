@@ -160,8 +160,8 @@ const AddBusiness = () => {
             priority
             className="rounded-lg"
           />
-        <p className="text-sm md:text-[20px] font-semibold bottom-15 absolute h-98 flex items-center justify-center w-full">
-          HOME | <span className="text-orange-600/90">Coaching Institute</span>
+        <p className="text-sm md:text-[30px] font-semibold top-10  absolute flex items-center justify-center w-full gap-1">
+          HOME |<span className="text-orange-600/90"> Coaching Institute</span>
         </p>
         </div>
       <div className="border border-gray-300 rounded-md p-4 md:p-8 flex flex-col space-y-5">
