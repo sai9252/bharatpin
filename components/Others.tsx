@@ -5,13 +5,13 @@ import Link from "next/link";
 import { FaCaretRight } from "react-icons/fa";
 
 const pagesData = [
-  { label: "About Us", path: "aboutUs" },
+  { label: "About Us", path: "about-us" },
   { label: "Terms & Conditions", path: "TC" },
-  { label: "Our Services", path: "ourServices" },
-  { label: "Company Description", path: "companyDescription" },
+  { label: "Our Services", path: "our-services" },
+  { label: "Company Description", path: "company-description" },
   { label: "Frequently Asked Questions", path: "FAQ" },
-  { label: "Privacy Policy", path: "privacyPolicy" },
-  { label: "Why Us", path: "whyUs" },
+  { label: "Privacy Policy", path: "privacy-policy" },
+  { label: "Why Us", path: "why-us" },
 ];
 
 const Others = () => {
@@ -29,7 +29,7 @@ const Others = () => {
               {pagesData.map((page, index) => (
                 <Link
                   key={index}
-                  href={`/otherPages/${page.path}`}
+                  href={`/${page.path}`}
                   className={`flex items-center gap-1 border-b-2 border-transparent hover:border-b-gray-300 ${
                     currentPath === page.path ? "border-b-orange-600" : ""
                   } p-1`}

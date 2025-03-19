@@ -23,17 +23,17 @@ const Information = () => {
         <div className="flex p-5 lg:p-8 items-center  ">
   <ul className="flex flex-col items-start space-y-2 border-b-gray-300 w-[15rem]">
     {[
-      { label: "About Us", path: "/otherPages/aboutUs" },
-      { label: "Terms & Conditions", path: "/otherPages/TC" },
-      { label: "Our Services", path: "/otherPages/ourServices" },
-      { label: "Company Description", path: "/otherPages/companyDescription" },
-      { label: "Frequently Asked Questions", path: "/otherPages/FAQ" },
-      { label: "Privacy Policy", path: "/otherPages/privacyPolicy" },
-      { label: "Why Us", path: "/otherPages/whyUs" },
+      { label: "About Us", path: "about-us" },
+      { label: "Terms & Conditions", path: "TC" },
+      { label: "Our Services", path: "our-services" },
+      { label: "Company Description", path: "company-description" },
+      { label: "Frequently Asked Questions", path: "FAQ" },
+      { label: "Privacy Policy", path: "privacy-policy" },
+      { label: "Why Us", path: "why-us" },
     ].map((item) => (
       <li key={item.label}>
         <Link
-          href={item.path}
+          href={`/${item.path}`}
           className="hover:text-black hover:font-semibold"
           target="_top"
         >
