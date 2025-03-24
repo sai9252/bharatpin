@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import {
   Select,
   SelectContent,
@@ -52,7 +52,7 @@ const AddBusiness = () => {
   const [filteredInstitutes, setFilteredInstitutes] = useState<Institute[]>([]);
   const [showFilterOptions, setShowFilterOptions] = useState(false);
 
-  const institutes = [
+  const institutes = useMemo(() => [
     {
       id: 1,
       name: "Aakash Institute - Bhaskar Nagar, Kakinada",
@@ -97,13 +97,9 @@ const AddBusiness = () => {
       mode: "online",
       category: "category",
     },
-  ];
+  ], []);
 
-  useEffect(() => {
-    applyFilters();
-  }, [activeButton]);
-
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     let filtered = [...institutes];
 
     // Apply active button filter
@@ -149,11 +145,11 @@ const AddBusiness = () => {
     }
 
     setFilteredInstitutes(filtered);
-  };
-
-  const handleFilterButtonClick = () => {
+  }, [activeButton, starRating, feeCollection, instituteType, instructionMode, institutes]);
+  
+  useEffect(() => {
     applyFilters();
-  };
+  }, [activeButton, applyFilters]);
 
   const toggleFilterOptions = () => {
     setShowFilterOptions(!showFilterOptions);
@@ -417,14 +413,6 @@ const AddBusiness = () => {
               </div>
             </div>
           </div>
-
-          {/* Apply Filter Button */}
-          <Button
-            onClick={handleFilterButtonClick}
-            className="w-full bg-orange-600 hover:bg-orange-700 text-white"
-          >
-            Apply Filters
-          </Button>
         </div>
 
         {/* Content area */}

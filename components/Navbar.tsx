@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Plus, Menu, User, LogIn, UserPlus, Phone, Briefcase } from 'lucide-react';
+import { Plus, Menu, User, LogIn, UserPlus, Briefcase } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import {
   Sheet,
@@ -64,10 +64,6 @@ const Navbarpage = () => {
                       <Link href="/leads" className="flex items-center gap-2 text-orange-700 hover:text-orange-500 transition px-2 py-2 hover:bg-orange-100 rounded-md">
                         <Briefcase className="w-5 h-5" />
                         <span>Get Leads</span>
-                      </Link>
-                      <Link href="/contact" className="flex items-center gap-2 text-orange-700 hover:text-orange-500 transition px-2 py-2 hover:bg-orange-100 rounded-md">
-                        <Phone className="w-5 h-5" />
-                        <span>Contact</span>
                       </Link>
                       <div className="border-t border-orange-200 my-2"></div>
                     </>

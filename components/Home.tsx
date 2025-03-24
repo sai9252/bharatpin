@@ -248,12 +248,13 @@ const Home = () => {
       { threshold: 0.5 }
     );
 
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
+    const currentStatsRef = statsRef.current;
+    if (currentStatsRef) {
+      observer.observe(currentStatsRef);
     }
 
     return () => {
-      if (statsRef.current) {
+      if (currentStatsRef) {
         observer.disconnect();
       }
     };

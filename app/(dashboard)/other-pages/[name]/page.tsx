@@ -9,8 +9,7 @@ import { notFound } from "next/navigation";
 
 export default async function DynamicPage({ params }: { params: { name: string } }) {
   // Access the dynamic parameter with params.name
-  // In Next.js App Router, we need to await the params
-  const { name } = await params;
+  const { name } = params;
 
   // Map the URL segments to the component keys
   // The keys should match exactly what appears in the URL
@@ -32,7 +31,7 @@ export default async function DynamicPage({ params }: { params: { name: string }
     },
     companyDescription: {
       title: "Company Description",
-      content: <CompanyDescription />
+      content: <CompanyDescription/>
     },
     FAQ: {
       title: "Frequently Asked Questions",
@@ -62,9 +61,7 @@ export default async function DynamicPage({ params }: { params: { name: string }
 
   // Handle case when page doesn't exist
   if (!pageData) {
-    return (
-      notFound()
-    );
+    return notFound();
   }
 
   return (
