@@ -4,5 +4,5 @@ import { redirect } from "next/navigation";
 
 export default function DefaultOtherPage() {
   // Redirect to the aboutus page when accessing the root otherPages route
-  redirect("/about-us");
+  redirect("/other-pages/about-us");
 }

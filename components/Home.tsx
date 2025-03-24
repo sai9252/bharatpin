@@ -33,6 +33,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { SearchCheck, Quote, MoveRight, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Input } from "./ui/input";
 
 const AnimatedCounter = ({ end, duration = 3000 }: { end: number; duration?: number }) => {
   const [count, setCount] = useState(0);
@@ -70,6 +71,25 @@ const AnimatedCounter = ({ end, duration = 3000 }: { end: number; duration?: num
   }, [end, duration]);
 
   return <span>{count.toLocaleString()}</span>;
+};
+
+const getImageUrl = (iconName: string) => {
+  switch (iconName) {
+    case 'teach':
+      return teach;
+    case 'boy':
+      return boy;
+    case 'hospital':
+      return hospital;
+    case 'house':
+      return house;
+    case 'paper':
+      return paper;
+    case 'ring':
+      return ring;
+    default:
+      return '';
+  }
 };
 
 const Home = () => {
@@ -155,6 +175,15 @@ const Home = () => {
     },
   ];
 
+  const categories = [
+    { id: 1, name: 'Coaching Institutes', icon: 'teach' },
+    { id: 2, name: 'Collages', icon: 'boy' },
+    { id: 3, name: 'Hospitals & Clinics', icon: 'hospital' },
+    { id: 4, name: 'Restaurants', icon: 'house' },
+    { id: 5, name: 'Packers and Movers', icon: 'paper' },
+    { id: 6, name: 'Jewellery Shops', icon: 'ring' }
+  ];
+
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     let animationId: number;
@@ -168,7 +197,7 @@ const Home = () => {
       const position = (elapsed / 30) % (scrollContainer?.scrollWidth || 1);
 
       // Reset position when we reach the end to create infinite effect
-      if (scrollContainer && scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 10) {
+      if (scrollContainer && scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 1) {
       scrollContainer.scrollLeft = 0;
       startTime = timestamp;
       } else {
@@ -264,7 +293,7 @@ const Home = () => {
   const renderCard = (card: Card, isDuplicate: boolean = false) => (
     <div
       key={isDuplicate ? `dup-${card.id}` : card.id}
-      className="flex-shrink-0 w-64 mx-2 bg-white rounded-lg overflow-hidden shadow border border-gray-200"
+      className="flex-shrink-0 w-60 mx-2 bg-white rounded-lg overflow-hidden shadow border border-gray-200"
     >
       <div className="relative w-full h-32">
         <div
@@ -302,16 +331,16 @@ const Home = () => {
 
   return (
     <div className="poppins space-y-5 mt-5">
-      <div className="flex h-[20rem] gap-4">
+      <div className="flex h-[18rem] gap-4 justify-center">
         {/* Large Image (Takes 50% width) */}
-        <div className="flex-[2] flex items-center relative justify-center">
+        <div className="lg:flex-[2] md:hidden lg:flex sm:flex w-full items-center relative justify-center">
           <Image
             src={home}
             alt="Home Logo"
             className="w-full h-full object-cover rounded-2xl"
           />
-          <div className=" w-60 h-26 bg-white rounded-t-3xl flex absolute rounded-br-3xl shadow-lg bottom-4 left-4">
-            <p className=" text-lg p-4 ">
+          <div className="lg:w-60 md:w-50 md:h-26 w-40 h-20 bg-white rounded-t-3xl flex absolute rounded-br-3xl shadow-lg bottom-5 left-5">
+            <p className=" md:text-lg text-sm p-3">
               Looking for <br />{" "}
               <span className=" font-semibold">Interior Design</span> <br />
               <span className="text-[16px] text-orange-600 font-normal">
@@ -322,7 +351,7 @@ const Home = () => {
         </div>
 
         {/* Smaller Image 1 (Takes 25% width) */}
-        <div className="flex-1 flex items-center justify-center relative">
+        <div className="lg:flex-1 md:flex items-center justify-center md:relative hidden">
           <Image
             src={wbook}
             alt="Work Logo"
@@ -334,7 +363,7 @@ const Home = () => {
         </div>
 
         {/* Smaller Image 2 (Takes 25% width) */}
-        <div className="flex-1 flex items-center justify-center relative">
+        <div className="lg:flex-1 md:flex items-center justify-center md:relative hidden">
           <Image
             src={man}
             alt="Man Logo"
@@ -346,16 +375,16 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="border border-gray-300 rounded-md p-8 flex flex-col space-y-5">
-        <div className="text-3xl font-semibold">
+      <div className="border border-gray-300 rounded-md p-4 md:p-8 flex flex-col space-y-5">
+        <div className="text-2x md:text-3xl font-semibold">
           <h1>
             India&apos;s Best Local Search{" "}
-            <span className="text-orange-600">Engine</span>
+            <span className="text-orange-600/90">Engine</span>
           </h1>
         </div>
-        <div className="flex space-x-10">
+        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 lg:space-x-10">
           <Select>
-            <SelectTrigger className="w-[250px]">
+            <SelectTrigger className="w-full md:w-[250px]">
               <SelectValue placeholder="Services" />
             </SelectTrigger>
             <SelectContent>
@@ -370,152 +399,93 @@ const Home = () => {
           </Select>
 
           <Select>
-            <SelectTrigger className="w-[250px]">
-              <SelectValue placeholder="Enter Locaton" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
-              </SelectGroup>
-            </SelectContent>
+          <Input className="w-full md:w-[250px]" placeholder="Enter Location" />
           </Select>
-          <Button className="w-52">Search</Button>
+          <Button className="w-full md:w-52">Search</Button>
         </div>
       </div>
 
       <div className="flex flex-col space-y-10 mx-5">
-        <div className="flex justify-between items-center">
-          <div className="flex flex-col items-center text-sm gap-3 ">
-            <Image
-              src={teach}
-              alt="Coaching Logo"
-              className="w-25 h-25 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 
-               hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]"
-            />
-            Coaching Institutes
+      <div>
+      {/* Small screens (2 columns, 3 rows) */}
+      <div className="grid grid-cols-2 gap-4 md:hidden">
+        {categories.map((category) => (
+          <div key={category.id} className="flex flex-col items-center text-center">
+            <div className="w-24 h-24 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300  hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
+              <Image 
+                src={getImageUrl(category.icon)} 
+                alt={`${category.name} icon`}
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <span className="mt-2 text-sm">{category.name}</span>
           </div>
-          <div className="flex flex-col items-center text-sm gap-3">
-            <Image
-              src={boy}
-              alt="Coaching Logo"
-              className="w-25 h-25 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 
-               hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)] "
-            />
-            Collages
-          </div>
-          <div className="flex flex-col items-center text-sm gap-3">
-            <Image
-              src={hospital}
-              alt="Coaching Logo"
-              className="w-25 h-25 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 
-               hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]  "
-            />
-            Hospitals & Clinics
-          </div>
-          <div className="flex flex-col items-center text-sm gap-3">
-            <Image
-              src={house}
-              alt="Coaching Logo"
-              className="w-25 h-25 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 
-               hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]  hover:drop-shadow-lg"
-            />
-            Restaurants
-          </div>
-          <div className="flex flex-col items-center text-sm gap-3">
-            <Image
-              src={paper}
-              alt="Coaching Logo"
-              className="w-25 h-25 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 
-               hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]  hover:drop-shadow-lg"
-            />
-            Packers and Movers
-          </div>
-          <div className="flex flex-col items-center text-sm gap-3">
-            <Image
+        ))}
+      </div>
 
-              src={ring}
-              alt="Coaching Logo"
-              className="w-25 h-25 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 
-               hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)] "
-            />
-            Jewellery Shops
+      {/* Medium screens (3 columns, 2 rows) */}
+      <div className="hidden md:grid lg:hidden grid-cols-3 gap-6">
+        {categories.map((category) => (
+          <div key={category.id} className="flex flex-col items-center text-center">
+            <div className="w-28 h-28 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300  hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
+              <Image 
+                src={getImageUrl(category.icon)} 
+                alt={`${category.name} icon`}
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <span className="mt-3 text-sm">{category.name}</span>
           </div>
-        </div>
-        <div className="flex justify-between items-center">
-          <div className="flex flex-col items-center text-sm gap-3 ">
-            <Image
-              src={teach}
-              alt="Coaching Logo"
-              className="w-25 h-25 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 
-               hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)] "
-            />
-            Coaching Institutes
+        ))}
+      </div>
+
+      {/* Large screens (6 columns, 1 row) */}
+      <div className="hidden lg:flex justify-between items-center">
+        {categories.map((category) => (
+          <div key={category.id} className="flex flex-col items-center text-center">
+            <div className="w-24 h-24 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
+              <Image 
+                src={getImageUrl(category.icon)} 
+                alt={`${category.name} icon`}
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <span className="mt-3 text-sm">{category.name}</span>
           </div>
-          <div className="flex flex-col items-center text-sm gap-3">
-            <Image
-              src={boy}
-              alt="Coaching Logo"
-              className="w-25 h-25 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 
-               hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)] "
-            />
-            Collages
+        ))}
+      </div>
+    </div>
+        
+        {/* Large screens (6 columns, 1 row) */}
+      <div className="hidden lg:flex justify-between items-center">
+        {categories.map((category) => (
+          <div key={category.id} className="flex flex-col items-center text-center">
+            <div className="w-24 h-24 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
+              <Image 
+                src={getImageUrl(category.icon)} 
+                alt={`${category.name} icon`}
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <span className="mt-3 text-sm">{category.name}</span>
           </div>
-          <div className="flex flex-col items-center text-sm gap-3">
-            <Image
-              src={hospital}
-              alt="Coaching Logo"
-              className="w-25 h-25 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 
-               hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]  "
-            />
-            Hospitals & Clinics
-          </div>
-          <div className="flex flex-col items-center text-sm gap-3">
-            <Image
-              src={house}
-              alt="Coaching Logo"
-              className="w-25 h-25 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 
-               hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]  hover:drop-shadow-lg"
-            />
-            Restaurants
-          </div>
-          <div className="flex flex-col items-center text-sm gap-3">
-            <Image
-              src={paper}
-              alt="Coaching Logo"
-              className="w-25 h-25 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 
-               hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]  hover:drop-shadow-lg"
-            />
-            Packers and Movers
-          </div>
-          <div className="flex flex-col items-center text-sm gap-3">
-            <Image
-              src={ring}
-              alt="Coaching Logo"
-              className="w-25 h-25 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 
-               hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)] "
-            />
-            Jewellery Shops
-          </div>
-        </div>
+        ))}
+      </div>
       </div>
 
       <div
         ref={statsRef}
-        className="flex justify-between items-center border border-gray-300 rounded-md p-8"
+        className="flex justify-between items-center border border-gray-300 rounded-md md:p-8 p-4"
       >
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
             <div key={index} className="flex flex-col items-center space-y-3">
-              <Icon className="w-8 h-6" />
-              <h1 className="text-2xl font-semibold">
+              <Icon className="md:w-8 md:h-6 w-6 h-6" />
+              <h1 className="md:text-2xl text-lg font-semibold">
                 {isVisible ? <AnimatedCounter end={stat.value} /> : 0}
               </h1>
-              <div className="text-sm text-gray-600 font-medium text-center">
+              <div className="md:text-sm text-xs text-gray-600 font-medium text-center">
                 {stat.label}
               </div>
             </div>
@@ -523,51 +493,47 @@ const Home = () => {
         })}
       </div>
 
-      <h1 className="text-3xl font-semibold">Recent Comments</h1>
+      <h1 className="md:text-2xl text-xl font-semibold">Recent Comments</h1>
 
-      <div className="flex items-center gap-8 p-10 bg-[#ea580c] rounded-xl">
-        <div className="bg-white flex p-5 rounded-t-4xl rounded-br-4xl">
-          <Quote className="w-15 h-15 rotate-180" />
+      <div className="md:flex justify-center lg:gap-8 md:gap-3 relative md:space-y-0 space-y-3 p-5 lg:p-10 bg-[#ea580c] rounded-xl">
+        <div className="bg-white flex lg:p-5 p-4 rounded-t-4xl rounded-br-4xl">
+          <Quote className="w-15 h-15 pt-4 rotate-180" />
           <p className="p-3 flex flex-col space-y-3">
-            <span className="text-lg">
+            <span className="md:text-md lg:text-lg text-sm">
               Best schools for kids.Their methods are unique.Supportive and
               motivating teachers
             </span>
-            <span className="font-semibold text-lg">Kalki Saaho</span>
+            <span className="font-semibold md:text-lg text-md">Kalki Saaho</span>
             <span>****</span>
             <span>@............setrdtfygchkguks</span>
           </p>
         </div>
-        <div className="bg-white flex p-5 rounded-t-4xl rounded-br-4xl">
-          <Quote className="w-15 h-15 rotate-180" />
-          <p className="p-3  flex flex-col space-y-3">
-            <span className="text-xl">
+        <div className="bg-white flex lg:p-5 p-4 rounded-t-4xl rounded-br-4xl">
+          <Quote className="w-15 h-15 pt-4 rotate-180" />
+          <p className="p-3 flex flex-col space-y-3">
+            <span className="md:text-md lg:text-lg text-sm">
               Best schools for kids.Their methods are unique.Supportive and
               motivating teachers
             </span>
-            <span className="font-semibold text-xl">Kalki Saaho</span>
+            <span className="font-semibold md:text-lg text-md">Kalki Saaho</span>
             <span>****</span>
             <span>@............setrdtfygchkguks</span>
           </p>
         </div>
       </div>
 
-      <h1 className="text-3xl font-semibold">Recent Listed</h1>
+      <h1 className=" md:text-2xl text-xl  font-semibold">Recent Listed</h1>
 
-      <div className="relative w-full overflow-hidden py-4">
-        {/* The outer container with hidden overflow */}
-        <div className="relative flex items-center mx-20">
-
-          {/* Scrollable Container */}
+        <div className="relative">
           <div
             ref={scrollRef}
-            className="flex overflow-x-auto scroll-smooth mx-10  scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"
+            className="flex overflow-x-auto lg:mx-15 scroll-smooth scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"
           >
-            <div className="flex gap-3 p-3">
+            <div className="flex p-3">
               {cards.map((card) => (
                 <div
                   key={card.id}
-                  className="flex-shrink-0 w-52 mx-4 border border-gray-300 bg-gray-100 p-2 pb-8 rounded-2xl space-y-3"
+                  className="flex-shrink-0 md:w-52 w-48 mx-4 border  border-gray-300 bg-gray-100 p-2 pb-8 rounded-2xl space-y-3"
                 >
                   <Image
                     src={slam}
@@ -588,65 +554,60 @@ const Home = () => {
               ))}
             </div>
           </div>
-
-        </div>
-
-        {/* Optional fade effect on edges */}
-        
       </div>
 
       <div className="flex justify-between items-center pt-5">
-        <h1 className="text-3xl font-semibold">Popular Cities</h1>
+        <h1 className="md:text-2xl text-xl  font-semibold">Popular Cities</h1>
         <Link href="/Explore" className="flex gap-1 ">
           Explore more
           <MoveRight className="text-orange-600 flex items-center" />
         </Link>
       </div>
 
-      <div className="flex items-center justify-evenly p-10 border border-gray-300 rounded-2xl">
-        <div className="w-80 flex justify-center">
-          <div className="w-40 h-40 rounded-full bg-teal-200 bg-opacity-30 absolute mr-32 "></div>
-          <Image src={city} alt="city Logo" className="w-60 h-60 m-5 relative" />
+      <div className="flex items-center justify-evenly relative md:p-10 border border-gray-300 rounded-2xl">
+        <div className="flex justify-center">
+          <div className="md:w-40 md:h-40 w-20 h-20 rounded-full bg-teal-200 bg-opacity-30 absolute md:mr-32 mr-16"></div>
+          <Image src={city} alt="city Logo" className="md:w-60 md:h-60 w-30 h-30 m-5 relative " />
         </div>
-        <div className="flex justify-around w-[60%]">
-          <div className="flex flex-col justify-between space-y-10 p-5">
-            <p className="flex flex-col font-semibold text-2xl items-center gap-2">
+        <div className="md:flex justify-around w-[60%] space-y-5 ">
+          <div className="flex md:flex-col items-center md:justify-center md:space-y-10  justify-around py-5 ">
+            <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
               Hyderabad
-              <span className="text-[18px] text-orange-600 font-normal">
+              <span className="md:text-[18px] text-[14px] text-orange-600/90 font-medium">
                 790 lisitings
               </span>
             </p>
-            <p className="flex flex-col font-semibold text-2xl items-center gap-2">
+            <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
               Pune
-              <span className="text-[18px] text-orange-600 font-normal">
+              <span className="md:text-[18px] text-[14px] text-orange-600/90  font-medium">
                 615 lisitings
               </span>
             </p>
           </div>
-          <div className="flex  flex-col justify-between space-y-10 p-5">
-            <p className="flex flex-col font-semibold text-2xl items-center gap-2">
+          <div className="flex md:flex-col items-center md:justify-center md:space-y-10 justify-around ">
+            <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
               Mumbai
-              <span className="text-[18px] text-orange-600 font-normal">
+              <span className="md:text-[18px] text-[14px] text-orange-600/90  font-medium">
                 529 lisitings
               </span>
             </p>
-            <p className="flex flex-col font-semibold text-2xl items-center gap-2">
+            <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
               Banglore
-              <span className="text-[18px] text-orange-600 font-normal">
+              <span className="md:text-[18px] text-[14px] text-orange-600/90  font-medium">
                 1597 lisitings
               </span>
             </p>
           </div>
-          <div className="flex flex-col justify-between space-y-10 p-5">
-            <p className="flex flex-col font-semibold text-2xl items-center gap-2">
+          <div className="flex md:flex-col items-center md:justify-center md:space-y-10  justify-around py-5 ">
+            <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
               Kolkota
-              <span className="text-[18px] text-orange-600 font-normal">
+              <span className="md:text-[18px] text-[14px]  text-orange-600/90  font-medium">
                 629 lisitings
               </span>
             </p>
-            <p className="flex flex-col font-semibold text-2xl items-center gap-2">
+            <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
               New Delhi
-              <span className="text-[18px] text-orange-600 font-normal">
+              <span className="md:text-[18px] text-[14px] text-orange-600/90  font-medium">
                 734 lisitings
               </span>
             </p>
@@ -654,7 +615,7 @@ const Home = () => {
         </div>
       </div>
 
-      <h1 className="text-3xl font-semibold">Recent Views</h1>
+      <h1 className="md:text-3xl text-xl  font-semibold">Recent Views</h1>
 
       <div className="relative w-full overflow-hidden py-4 bg-gray-100">
         {/* The outer container with hidden overflow */}
@@ -676,44 +637,45 @@ const Home = () => {
       </div>
 
       <div className="relative py-2">
-        <div className="flex border border-gray-300 p-16 justify-center items-center gap-8 rounded-lg ">
-          <div className="h-5 w-5 rounded-full bg-red-500 absolute top-0 left-45"></div>
-          <div className="h-5 w-5 rounded-full bg-red-500 absolute bottom-0 right-45"></div>
-          <div className="h-5 w-5 rounded-full border bg-white border-gray-400 absolute bottom-0 right-55"></div>
-          <div className="h-5 w-5 rounded-full border border-gray-400 absolute bg-white top-0 left-55"></div>
+        <div className="flex flex-col md:flex-row border border-gray-300 p-5 lg:p-16 justify-center items-center rounded-lg md:gap-10 gap-3">
+          <div className="h-5 w-5 rounded-full bg-red-500 absolute top-0 lg:left-45 md:left-40 left-20 "></div>
+          <div className="h-5 w-5 rounded-full bg-red-500 absolute bottom-0 lg:right-45 md:right-40 right-20"></div>
+          <div className="h-5 w-5 rounded-full border bg-white border-gray-400 absolute bottom-0 lg:right-55 md:right-50 right-30"></div>
+          <div className="h-5 w-5 rounded-full border border-gray-400 absolute bg-white top-0 lg:left-55 md:left-50 left-30"></div>
+          <div className="relative">
           <Image
             src={blackstars}
             alt="stars Logo"
-            className="absolute top-23 rotate-180 left-80"
+            className="absolute rotate-180 left-30 md:left-40 lg:left-55 "
           />
           <Image
             src={finalw}
             alt="FinalW Logo"
-            className="object-contain w-[18rem] border-2 border-yellow-400 rounded-t-full mx-5 "
+            className="object-contain lg:w-[18rem] md:w-[14rem] w-[10rem] border-2 border-yellow-400 rounded-t-full "
           />
-          <p className="flex font-semibold flex-col text-2xl p-8">
-            TOP RATED
-            <span className="font-normal text-sm">
-              Love fiercely, live fully, and embrace every moment as if it were
-              your last. In the tapestry of life, make every thread count.
-            </span>
-          </p>
-          <div className="border border-gray-300 rounded-full p-4 h-36 w-40 flex items-center justify-center">
-            <Image src={preksis} alt="Preksis Logo" width={80} height={80} />
           </div>
-          <div className="border border-gray-300 rounded-full p-4 h-36 w-40 flex items-center justify-center">
-            <Image
-              src={ips}
-              alt="Preksis Logo"
-              className="object-contain rounded-full"
-            />
+            <div className="flex justify-center items-center md:w-1/3 p-4">
+            <p className="flex font-semibold flex-col text-center">
+              <span className="lg:text-4xl md:text-3xl sm:text-2xl text-xl ">
+                TOP RATED
+              </span>
+              <span className="font-normal lg:text-lg md:text-base sm:text-sm text-xs md:mt-2 mt-0 px-4">
+                Love fiercely, live fully, and embrace every moment as if it 
+                were your last. In the tapestry of life, make every thread 
+                count.
+              </span>
+            </p>
           </div>
-          <div className="border border-gray-300 rounded-full p-4 h-36 w-40 flex items-center justify-center">
-            <Image
-              src={ips}
-              alt="Preksis Logo"
-              className="object-contain rounded-full"
-            />
+          <div className="flex flex-row md:flex-col lg:flex-row gap-6 justify-center items-center">
+            <div className="border border-gray-300 rounded-full p-2 md:p-3 lg:p-4 h-20 w-20 md:h-25 md:w-25 lg:h-30 lg:w-30 flex items-center justify-center">
+              <Image src={preksis} alt="Preksis Logo" width={80} height={80} className="w-3/4 h-3/4 object-contain" />
+            </div>
+            <div className="border border-gray-300 rounded-full p-2 md:p-3 lg:p-4 h-20 w-20 md:h-25 md:w-25 lg:h-30 lg:w-30 flex items-center justify-center">
+              <Image src={ips} alt="IPS Logo" width={80} height={80} className="w-3/4 h-3/4 object-contain rounded-full" />
+            </div>
+            <div className="border border-gray-300 rounded-full p-2 md:p-3 lg:p-4 h-20 w-20 md:h-25 md:w-25 lg:h-30 lg:w-30 flex items-center justify-center">
+              <Image src={ips} alt="IPS Logo" width={80} height={80} className="w-3/4 h-3/4 object-contain rounded-full" />
+            </div>
           </div>
         </div>
       </div>

@@ -9,6 +9,9 @@ const Business = () => {
   const pathname = usePathname();
   const isNotAddBusinessPage = pathname !== '/addBusiness';
 
+
+  
+
   if (!isNotAddBusinessPage) return null; // Hide if it's the add business page
 
   return (

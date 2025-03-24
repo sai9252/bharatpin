@@ -5,6 +5,7 @@ import OurServices from "./our-services/page";
 import PrivacyPolicy from "./privacy-policy/page";
 import TC from "./TC/page";
 import WhyUs from "./why-us/page";
+import { notFound } from "next/navigation";
 
 export default async function DynamicPage({ params }: { params: { name: string } }) {
   // Access the dynamic parameter with params.name
@@ -62,12 +63,7 @@ export default async function DynamicPage({ params }: { params: { name: string }
   // Handle case when page doesn't exist
   if (!pageData) {
     return (
-      <div className="page-container flex flex-col items-center justify-center h-full">
-        <div className="content text-red-600">
-          <h1>Page Not Found</h1>
-          <p>The page you are looking for does not exist.</p>
-        </div>
-      </div>
+      notFound()
     );
   }
 

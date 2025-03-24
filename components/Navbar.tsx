@@ -23,14 +23,10 @@ const Navbarpage = () => {
       <>
       {/* Top Bar */}
       <div className="flex justify-between px-5 bg-orange-600/90 text-white py-1 text-sm">
-      <div className="w-full px-4 md:px-4 lg:px-8 py-2 flex justify-between items-center">
-          {/* Mobile Logo */}
-          <div className="md:hidden bg-white rounded-lg p-1 shadow-md">
-            <Image src="/logo.png" alt="GetProList Logo" width={120} height={30} priority />
-          </div>
+      <div className="w-full px-4 md:px-4 lg:px-8 py-2 flex justify-end md:justify-between md:items-center">
 
           {/* Desktop Tagline */}
-          <h1 className="font-bold md:flex hidden">GetProList :<span className="font-normal"> India Best Local Search Engine</span></h1>
+          <h1 className="font-bold md:flex hidden gap-1">BharaPins :<span className="font-normal"> India Best Local Search Engine</span></h1>
 
           {/* Desktop Nav Links - Conditionally hidden based on path */}
           
@@ -51,10 +47,10 @@ const Navbarpage = () => {
             <SheetContent side="right" className="bg-gradient-to-b from-white to-orange-50 border-l border-orange-200">
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-center mb-6">
-                  <Image src="/logo.png" alt="GetProList Logo" width={130} height={40} priority />
+                  <Image src="/logo.png" alt="GetProList Logo" width={130} height={30} priority />
                 </div>
                 
-                <nav className="flex flex-col space-y-4 mt-4">
+                <nav className="flex flex-col space-y-4 ">
                   {!shouldHideNav && (
                     <>
                       <Link href="/login" target="_self" className="flex items-center gap-2 text-orange-700 hover:text-orange-500 transition px-2 py-2 hover:bg-orange-100 rounded-md">
@@ -103,12 +99,12 @@ const Navbarpage = () => {
       <div className="border-b-2 border-gray-200 rounded-lg bg-white">
         <div className="w-full px-4 md:px-6 lg:px-20 py-3 flex justify-between items-center">
           {/* Desktop Logo */}
-          <div className="hidden md:block">
+          <div className="block">
            <Link href="/" target='_parent'> <Image src="/logo.png" alt="GetProList Logo" width={160} height={40} priority /></Link>
           </div>
           
           {/* Action Buttons */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="flex items-center space-x-6">
             
               <Link href="/login" target="_parent" className="flex items-center gap-2 text-gray-700 hover:text-orange-600 transition font-medium">
                 <User className="w-5 h-5 text-orange-600/90" />

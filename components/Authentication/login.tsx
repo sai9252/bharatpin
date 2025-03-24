@@ -122,9 +122,11 @@ const Login = () => {
         </p>
         
         {/* Forgot Password Button */}
+        <Link href="/forget-password" target="_parent">
         <Button className="w-full md:w-[25rem] bg-gray-200 text-black hover:bg-gray-100 text-xs md:text-sm">
           Forget Password
         </Button>
+        </Link>
       </div>
 
       {/* Image Section - Hidden on mobile */}
