@@ -7,12 +7,13 @@ import TC from "./TC/page";
 import WhyUs from "./why-us/page";
 import { notFound } from "next/navigation";
 
-export default async function DynamicPage({ params }: { params: { name: string } }) {
-  // Access the dynamic parameter with params.name
-  const { name } = params;
+type Params = Promise<{ name: string }>
 
-  // Map the URL segments to the component keys
-  // The keys should match exactly what appears in the URL
+export default async function DynamicPage({ params }: { params: Params }) {
+
+  const  {name}  = await  params;
+
+
   const routeMapping: Record<string, keyof typeof routeContent> = {
     "about-us": "aboutUs",
     "company-description": "companyDescription",
@@ -23,7 +24,6 @@ export default async function DynamicPage({ params }: { params: { name: string }
     "why-us": "whyUs"
   };
 
-  // Define content for each route
   const routeContent = {
     aboutUs: {
       title: "About Us",
@@ -55,11 +55,9 @@ export default async function DynamicPage({ params }: { params: { name: string }
     }
   };
 
-  // Map the URL param to the correct component key
   const routeKey = routeMapping[name];
   const pageData = routeKey ? routeContent[routeKey] : null;
 
-  // Handle case when page doesn't exist
   if (!pageData) {
     return notFound();
   }
