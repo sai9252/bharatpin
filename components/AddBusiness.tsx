@@ -20,6 +20,20 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { Input } from "./ui/input";
 
+interface Institute {
+  id: number;
+  name: string;
+  description: string;
+  address: string;
+  logo: string;
+  rating: number;
+  maxRating: number;
+  type: string;
+  fee: string;
+  mode: string;
+  category: string;
+}
+
 const AddBusiness = () => {
   const [activeButton, setActiveButton] = useState("all");
   const [starRating, setStarRating] = useState("default");
@@ -35,19 +49,7 @@ const AddBusiness = () => {
     online: false,
     offline: false,
   });
-  interface Institute {
-    id: number;
-    name: string;
-    description: string;
-    address: string;
-    logo: string;
-    rating: number;
-    maxRating: number;
-    type: string;
-    fee: string;
-    mode: string;
-    category: string;
-  }
+
 
   const [filteredInstitutes, setFilteredInstitutes] = useState<Institute[]>([]);
   const [showFilterOptions, setShowFilterOptions] = useState(false);

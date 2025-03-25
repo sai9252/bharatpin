@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useEffect, useState, useRef } from "react";
 import teach from "@/public/teaching.png";
@@ -34,8 +34,15 @@ import { SearchCheck, Quote, MoveRight, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Input } from "./ui/input";
+import Slider from "react-slick";
 
-const AnimatedCounter = ({ end, duration = 3000 }: { end: number; duration?: number }) => {
+const AnimatedCounter = ({
+  end,
+  duration = 3000,
+}: {
+  end: number;
+  duration?: number;
+}) => {
   const [count, setCount] = useState(0);
   const countRef = useRef(0);
   const startTimeRef = useRef<number | null>(null);
@@ -50,16 +57,16 @@ const AnimatedCounter = ({ end, duration = 3000 }: { end: number; duration?: num
       const progress = timestamp - startTimeRef.current;
 
       if (progress < duration) {
-      // Easing function for smoother animation
-      const easeOutQuad = (t: number) => t * (2 - t);
-      const easedProgress = easeOutQuad(progress / duration);
+        // Easing function for smoother animation
+        const easeOutQuad = (t: number) => t * (2 - t);
+        const easedProgress = easeOutQuad(progress / duration);
 
-      countRef.current = Math.floor(easedProgress * end);
-      setCount(countRef.current);
-      requestAnimationFrame(animate);
+        countRef.current = Math.floor(easedProgress * end);
+        setCount(countRef.current);
+        requestAnimationFrame(animate);
       } else {
-      countRef.current = end;
-      setCount(end);
+        countRef.current = end;
+        setCount(end);
       }
     };
 
@@ -75,28 +82,36 @@ const AnimatedCounter = ({ end, duration = 3000 }: { end: number; duration?: num
 
 const getImageUrl = (iconName: string) => {
   switch (iconName) {
-    case 'teach':
+    case "teach":
       return teach;
-    case 'boy':
+    case "boy":
       return boy;
-    case 'hospital':
+    case "hospital":
       return hospital;
-    case 'house':
+    case "house":
       return house;
-    case 'paper':
+    case "paper":
       return paper;
-    case 'ring':
+    case "ring":
       return ring;
     default:
-      return '';
+      return "";
   }
 };
+
+interface Card {
+  id: number;
+  name: string;
+  location: string;
+  stars: number;
+  imageSrc: string;
+  dark: boolean;
+}
 
 const Home = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const statsRef = useRef(null);
-
 
   // Sample data - in a real app, you would pass this as props
   const cards = [
@@ -107,7 +122,14 @@ const Home = () => {
     { id: 5, username: "@rgierigierimgiprmmgpmdgdfgdnsgngfsj" },
     { id: 6, username: "@rgierigierimgiprmmgpmdgdfgdnsgngfsj" },
     { id: 7, username: "@rgierigierimgiprmmgpmdgdfgdnsgngfsj" },
-
+    { id: 8, username: "@rgierigierimgiprmmgpmdgdfgdnsgngfsj" },
+    { id: 9, username: "@rgierigierimgiprmmgpmdgdfgdnsgngfsj" },
+    { id: 10, username: "@rgierigierimgiprmmgpmdgdfgdnsgngfsj" },
+    { id: 11, username: "@rgierigierimgiprmmgpmdgdfgdnsgngfsj" },
+    { id: 12, username: "@rgierigierimgiprmmgpmdgdfgdnsgngfsj" },
+    { id: 13, username: "@rgierigierimgiprmmgpmdgdfgdnsgngfsj" },
+    { id: 14, username: "@rgierigierimgiprmmgpmdgdfgdnsgngfsj" },
+    { id: 15, username: "@rgierigierimgiprmmgpmdgdfgdnsgngfsj" },
   ];
 
   // Updated data with gym properties matching the image
@@ -119,7 +141,7 @@ const Home = () => {
       stars: 5,
       imageSrc: "/view1.jpg",
       width: 300, // Define width
-      height: 200, 
+      height: 200,
       dark: true,
     },
     {
@@ -129,7 +151,7 @@ const Home = () => {
       stars: 5,
       imageSrc: "/view2.jpg",
       width: 300, // Define width
-      height: 200, 
+      height: 200,
       dark: false,
     },
     {
@@ -139,7 +161,7 @@ const Home = () => {
       stars: 4,
       imageSrc: "/view3.jpg",
       width: 300, // Define width
-      height: 200, 
+      height: 200,
       dark: true,
     },
     {
@@ -149,7 +171,7 @@ const Home = () => {
       stars: 5,
       imageSrc: "/view3.jpg",
       width: 300, // Define width
-      height: 200, 
+      height: 200,
       dark: false,
     },
     // Add more gyms for continuous scrolling
@@ -160,7 +182,7 @@ const Home = () => {
       stars: 4,
       imageSrc: "/view2.jpg",
       width: 300, // Define width
-      height: 200, 
+      height: 200,
       dark: false,
     },
     {
@@ -170,18 +192,18 @@ const Home = () => {
       stars: 5,
       imageSrc: "/view1.jpg",
       width: 300, // Define width
-      height: 200, 
+      height: 200,
       dark: true,
     },
   ];
 
   const categories = [
-    { id: 1, name: 'Coaching Institutes', icon: 'teach' },
-    { id: 2, name: 'Collages', icon: 'boy' },
-    { id: 3, name: 'Hospitals & Clinics', icon: 'hospital' },
-    { id: 4, name: 'Restaurants', icon: 'house' },
-    { id: 5, name: 'Packers and Movers', icon: 'paper' },
-    { id: 6, name: 'Jewellery Shops', icon: 'ring' }
+    { id: 1, name: "Coaching Institutes", icon: "teach" },
+    { id: 2, name: "Collages", icon: "boy" },
+    { id: 3, name: "Hospitals & Clinics", icon: "hospital" },
+    { id: 4, name: "Restaurants", icon: "house" },
+    { id: 5, name: "Packers and Movers", icon: "paper" },
+    { id: 6, name: "Jewellery Shops", icon: "ring" },
   ];
 
   useEffect(() => {
@@ -197,13 +219,16 @@ const Home = () => {
       const position = (elapsed / 30) % (scrollContainer?.scrollWidth || 1);
 
       // Reset position when we reach the end to create infinite effect
-      if (scrollContainer && scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 1) {
-      scrollContainer.scrollLeft = 0;
-      startTime = timestamp;
+      if (
+        scrollContainer &&
+        scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 1
+      ) {
+        scrollContainer.scrollLeft = 0;
+        startTime = timestamp;
       } else {
-      if (scrollContainer) {
-        scrollContainer.scrollLeft = position;
-      }
+        if (scrollContainer) {
+          scrollContainer.scrollLeft = position;
+        }
       }
 
       animationId = requestAnimationFrame(scroll);
@@ -228,12 +253,11 @@ const Home = () => {
 
     return () => {
       cancelAnimationFrame(animationId);
- 
+
       if (scrollContainer) {
         scrollContainer.removeEventListener("mouseleave", handleMouseLeave);
         scrollContainer.removeEventListener("mouseleave", handleMouseLeave);
       }
-      
     };
   }, []);
 
@@ -282,15 +306,6 @@ const Home = () => {
       ));
   };
 
-  interface Card {
-    id: number;
-    name: string;
-    location: string;
-    stars: number;
-    imageSrc: string;
-    dark: boolean;
-  }
-
   const renderCard = (card: Card, isDuplicate: boolean = false) => (
     <div
       key={isDuplicate ? `dup-${card.id}` : card.id}
@@ -302,33 +317,40 @@ const Home = () => {
             card.dark ? "bg-gray-900" : "bg-white"
           } flex items-center justify-center`}
         >
-         {card.dark ? (
-  <Image
-    src={card.imageSrc}
-    alt={card.name}
-    layout="fill"
-    objectFit="contain"
-  />
-) : (
-  <Image
-    src={card.imageSrc}
-    alt={card.name}
-    layout="fill"
-    objectFit="cover"
-  />
-)}
+          {card.dark ? (
+            <Image
+              src={card.imageSrc}
+              alt={card.name}
+              layout="fill"
+              objectFit="contain"
+            />
+          ) : (
+            <Image
+              src={card.imageSrc}
+              alt={card.name}
+              layout="fill"
+              objectFit="cover"
+            />
+          )}
         </div>
       </div>
-  
+
       <div className="p-3">
         <h3 className="font-semibold text-sm truncate">{card.name}</h3>
         <p className="text-gray-500 text-xs mb-2">{card.location}</p>
-  
+
         <div className="flex items-center">{renderStars(card.stars)}</div>
       </div>
     </div>
   );
-  
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 8,
+    slidesToScroll: 2,
+  };
 
   return (
     <div className="poppins space-y-5 mt-5">
@@ -400,78 +422,93 @@ const Home = () => {
           </Select>
 
           <Select>
-          <Input className="w-full md:w-[250px]" placeholder="Enter Location" />
+            <Input
+              className="w-full md:w-[250px]"
+              placeholder="Enter Location"
+            />
           </Select>
           <Button className="w-full md:w-52">Search</Button>
         </div>
       </div>
 
       <div className="flex flex-col space-y-10 mx-5">
-      <div>
-      {/* Small screens (2 columns, 3 rows) */}
-      <div className="grid grid-cols-2 gap-4 md:hidden">
-        {categories.map((category) => (
-          <div key={category.id} className="flex flex-col items-center text-center">
-            <div className="w-24 h-24 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300  hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
-              <Image 
-                src={getImageUrl(category.icon)} 
-                alt={`${category.name} icon`}
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <span className="mt-2 text-sm">{category.name}</span>
+        <div>
+          {/* Small screens (2 columns, 3 rows) */}
+          <div className="grid grid-cols-2 gap-4 md:hidden">
+            {categories.map((category) => (
+              <div
+                key={category.id}
+                className="flex flex-col items-center text-center"
+              >
+                <div className="w-24 h-24 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300  hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
+                  <Image
+                    src={getImageUrl(category.icon)}
+                    alt={`${category.name} icon`}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="mt-2 text-sm">{category.name}</span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      {/* Medium screens (3 columns, 2 rows) */}
-      <div className="hidden md:grid lg:hidden grid-cols-3 gap-6">
-        {categories.map((category) => (
-          <div key={category.id} className="flex flex-col items-center text-center">
-            <div className="w-28 h-28 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300  hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
-              <Image 
-                src={getImageUrl(category.icon)} 
-                alt={`${category.name} icon`}
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <span className="mt-3 text-sm">{category.name}</span>
+          {/* Medium screens (3 columns, 2 rows) */}
+          <div className="hidden md:grid lg:hidden grid-cols-3 gap-6">
+            {categories.map((category) => (
+              <div
+                key={category.id}
+                className="flex flex-col items-center text-center"
+              >
+                <div className="w-28 h-28 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300  hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
+                  <Image
+                    src={getImageUrl(category.icon)}
+                    alt={`${category.name} icon`}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="mt-3 text-sm">{category.name}</span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      {/* Large screens (6 columns, 1 row) */}
-      <div className="hidden lg:flex justify-between items-center">
-        {categories.map((category) => (
-          <div key={category.id} className="flex flex-col items-center text-center">
-            <div className="w-24 h-24 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
-              <Image 
-                src={getImageUrl(category.icon)} 
-                alt={`${category.name} icon`}
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <span className="mt-3 text-sm">{category.name}</span>
+          {/* Large screens (6 columns, 1 row) */}
+          <div className="hidden lg:flex justify-between items-center">
+            {categories.map((category) => (
+              <div
+                key={category.id}
+                className="flex flex-col items-center text-center"
+              >
+                <div className="w-24 h-24 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
+                  <Image
+                    src={getImageUrl(category.icon)}
+                    alt={`${category.name} icon`}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="mt-3 text-sm">{category.name}</span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
-        
+        </div>
+
         {/* Large screens (6 columns, 1 row) */}
-      <div className="hidden lg:flex justify-between items-center">
-        {categories.map((category) => (
-          <div key={category.id} className="flex flex-col items-center text-center">
-            <div className="w-24 h-24 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
-              <Image 
-                src={getImageUrl(category.icon)} 
-                alt={`${category.name} icon`}
-                className="w-full h-full object-contain"
-              />
+        <div className="hidden lg:flex justify-between items-center">
+          {categories.map((category) => (
+            <div
+              key={category.id}
+              className="flex flex-col items-center text-center"
+            >
+              <div className="w-24 h-24 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
+                <Image
+                  src={getImageUrl(category.icon)}
+                  alt={`${category.name} icon`}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <span className="mt-3 text-sm">{category.name}</span>
             </div>
-            <span className="mt-3 text-sm">{category.name}</span>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       </div>
 
       <div
@@ -504,7 +541,9 @@ const Home = () => {
               Best schools for kids.Their methods are unique.Supportive and
               motivating teachers
             </span>
-            <span className="font-semibold md:text-lg text-md">Kalki Saaho</span>
+            <span className="font-semibold md:text-lg text-md">
+              Kalki Saaho
+            </span>
             <span>****</span>
             <span>@............setrdtfygchkguks</span>
           </p>
@@ -516,7 +555,9 @@ const Home = () => {
               Best schools for kids.Their methods are unique.Supportive and
               motivating teachers
             </span>
-            <span className="font-semibold md:text-lg text-md">Kalki Saaho</span>
+            <span className="font-semibold md:text-lg text-md">
+              Kalki Saaho
+            </span>
             <span>****</span>
             <span>@............setrdtfygchkguks</span>
           </p>
@@ -525,37 +566,30 @@ const Home = () => {
 
       <h1 className=" md:text-2xl text-xl  font-semibold">Recent Listed</h1>
 
-        <div className="relative">
-          <div
-            ref={scrollRef}
-            className="flex overflow-x-auto lg:mx-15 scroll-smooth scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"
-          >
-            <div className="flex p-3">
-              {cards.map((card) => (
-                <div
-                  key={card.id}
-                  className="flex-shrink-0 md:w-52 w-48 mx-4 border  border-gray-300 bg-gray-100 p-2 pb-8 rounded-2xl space-y-3"
-                >
-                  <Image
-                    src={slam}
-                    alt="Slam Logo"
-                    className="w-52 h-40 rounded-2xl"
+        <div  className="w-full m-auto">
+        <Slider {...settings} className="bg-gray-200/90 p-3 rounded-xl">
+            {cards.map((card) => (
+              <div
+                key={card.id}
+                className="flex-shrink-0 md:w-40 w-48 border  border-gray-300 bg-gray-100 p-2 pb-8 rounded-2xl space-y-3"
+              >
+                <Image
+                  src={slam}
+                  alt="Slam Logo"
+                  className="w-52 h-40 rounded-2xl"
+                />
+                <p className="underline text-sm break-words">{card.username}</p>
+                <a href="/Explore" className="flex gap-1 text-sm items-center">
+                  Explore more
+                  <MoveRight
+                    className="text-orange-600 flex items-center"
+                    size={16}
                   />
-                  <p className="underline text-sm break-words">
-                    {card.username}
-                  </p>
-                  <a href="/Explore" className="flex gap-1 text-sm items-center">
-                    Explore more
-                    <MoveRight
-                      className="text-orange-600 flex items-center"
-                      size={16}
-                    />
-                  </a>
-                </div>
-              ))}
-            </div>
+                </a>
+              </div>
+            ))}
+            </Slider>
           </div>
-      </div>
 
       <div className="flex justify-between items-center pt-5">
         <h1 className="md:text-2xl text-xl  font-semibold">Popular Cities</h1>
@@ -568,7 +602,11 @@ const Home = () => {
       <div className="flex items-center justify-evenly relative md:p-10 border border-gray-300 rounded-2xl">
         <div className="flex justify-center">
           <div className="md:w-40 md:h-40 w-20 h-20 rounded-full bg-teal-200 bg-opacity-30 absolute md:mr-32 mr-16"></div>
-          <Image src={city} alt="city Logo" className="md:w-60 md:h-60 w-30 h-30 m-5 relative " />
+          <Image
+            src={city}
+            alt="city Logo"
+            className="md:w-60 md:h-60 w-30 h-30 m-5 relative "
+          />
         </div>
         <div className="md:flex justify-around w-[60%] space-y-5 ">
           <div className="flex md:flex-col items-center md:justify-center md:space-y-10  justify-around py-5 ">
@@ -644,38 +682,56 @@ const Home = () => {
           <div className="h-5 w-5 rounded-full border bg-white border-gray-400 absolute bottom-0 lg:right-55 md:right-50 right-30"></div>
           <div className="h-5 w-5 rounded-full border border-gray-400 absolute bg-white top-0 lg:left-55 md:left-50 left-30"></div>
           <div className="relative">
-          <Image
-            src={blackstars}
-            alt="stars Logo"
-            className="absolute rotate-180 left-30 md:left-40 lg:left-55 "
-          />
-          <Image
-            src={finalw}
-            alt="FinalW Logo"
-            className="object-contain lg:w-[18rem] md:w-[14rem] w-[10rem] border-2 border-yellow-400 rounded-t-full "
-          />
+            <Image
+              src={blackstars}
+              alt="stars Logo"
+              className="absolute rotate-180 left-30 md:left-40 lg:left-55 "
+            />
+            <Image
+              src={finalw}
+              alt="FinalW Logo"
+              className="object-contain lg:w-[18rem] md:w-[14rem] w-[10rem] border-2 border-yellow-400 rounded-t-full "
+            />
           </div>
-            <div className="flex justify-center items-center md:w-1/3 p-4">
+          <div className="flex justify-center items-center md:w-1/3 p-4">
             <p className="flex font-semibold flex-col text-center">
               <span className="lg:text-4xl md:text-3xl sm:text-2xl text-xl ">
                 TOP RATED
               </span>
               <span className="font-normal lg:text-lg md:text-base sm:text-sm text-xs md:mt-2 mt-0 px-4">
-                Love fiercely, live fully, and embrace every moment as if it 
-                were your last. In the tapestry of life, make every thread 
+                Love fiercely, live fully, and embrace every moment as if it
+                were your last. In the tapestry of life, make every thread
                 count.
               </span>
             </p>
           </div>
           <div className="flex flex-row md:flex-col lg:flex-row gap-6 justify-center items-center">
             <div className="border border-gray-300 rounded-full p-2 md:p-3 lg:p-4 h-20 w-20 md:h-25 md:w-25 lg:h-30 lg:w-30 flex items-center justify-center">
-              <Image src={preksis} alt="Preksis Logo" width={80} height={80} className="w-3/4 h-3/4 object-contain" />
+              <Image
+                src={preksis}
+                alt="Preksis Logo"
+                width={80}
+                height={80}
+                className="w-3/4 h-3/4 object-contain"
+              />
             </div>
             <div className="border border-gray-300 rounded-full p-2 md:p-3 lg:p-4 h-20 w-20 md:h-25 md:w-25 lg:h-30 lg:w-30 flex items-center justify-center">
-              <Image src={ips} alt="IPS Logo" width={80} height={80} className="w-3/4 h-3/4 object-contain rounded-full" />
+              <Image
+                src={ips}
+                alt="IPS Logo"
+                width={80}
+                height={80}
+                className="w-3/4 h-3/4 object-contain rounded-full"
+              />
             </div>
             <div className="border border-gray-300 rounded-full p-2 md:p-3 lg:p-4 h-20 w-20 md:h-25 md:w-25 lg:h-30 lg:w-30 flex items-center justify-center">
-              <Image src={ips} alt="IPS Logo" width={80} height={80} className="w-3/4 h-3/4 object-contain rounded-full" />
+              <Image
+                src={ips}
+                alt="IPS Logo"
+                width={80}
+                height={80}
+                className="w-3/4 h-3/4 object-contain rounded-full"
+              />
             </div>
           </div>
         </div>
