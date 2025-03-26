@@ -76,7 +76,7 @@ const Navbarpage = () => {
                     <div className="flex flex-col h-full">
                       <div className="flex justify-between items-center mb-6">
                         <Image
-                          src="/logo.png"
+                          src={Logo}
                           alt="GetProList Logo"
                           width={130}
                           height={30}
