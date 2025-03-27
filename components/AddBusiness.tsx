@@ -23,6 +23,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { Input } from "./ui/input";
 
+
 interface Institute {
   id: number;
   name: string;
