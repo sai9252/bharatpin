@@ -1,4 +1,4 @@
-import BusinessListing from '@/components/Institute'
+import BusinessListing from '@/components/Institute/Institute'
 import React from 'react'
 
 const page = () => {

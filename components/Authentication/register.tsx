@@ -9,7 +9,6 @@ import { FaUser } from "react-icons/fa6";
 import { MdOutlineEmail, MdOutlineLock, MdPhone } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
-import { toast } from "react-toastify";
 import OTPInput from "./OTPInput";
 
 const Register = () => {
@@ -82,7 +81,6 @@ const Register = () => {
 
   const handleVerifyOTP = () => {
     setIsPhoneVerified(true);
-    toast.success('Phone number verified successfully');
     setOtpSent(false);
   }
 
@@ -111,7 +109,6 @@ const Register = () => {
     e.preventDefault();
     const isValid = validateForm();
     if (!isPhoneVerified) {
-      toast.error("Please verify your phone number");
       return false;
     }
     if (isValid) {

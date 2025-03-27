@@ -54,12 +54,6 @@ const Login = () => {
 
   const handleVerifyAndLogin = () => {
 
-    if (otp.trim() === '') {
-      alert('Please enter the OTP');
-      return;
-    }
-
-
     const isOTPValid = otp.length === 6; 
 
     if (isOTPValid) {
