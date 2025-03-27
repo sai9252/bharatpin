@@ -16,8 +16,8 @@ import Link from "next/link";
 
 const Information = () => {
   return (
-    <div className="border border-gray-300 rounded-xl mt-3 poppins">
-      <div className="flex flex-col lg:flex-row lg:justify-between">
+    <div className="border border-gray-300 rounded-xl mt-3 poppins ">
+      <div className="flex flex-col lg:flex-row lg:justify-between lg:px-15 md:px-8 px-0" >
         {/* First section - Links */}
 
         <div className="flex p-5 lg:p-8 items-center  ">
