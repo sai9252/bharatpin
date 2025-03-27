@@ -2,9 +2,10 @@
 import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-import coachinglogo from "@/public/coachinglogo.jpg";
-import coaching from "@/public/coaching.jpg"
+import coachinglogo from "@/public/coachinglogo.jpeg";
+// import coaching from "@/public/coaching.jpg"
 import { Textarea } from "@/components/ui/textarea"
+import { Button } from './ui/button';
 
 
 export default function BusinessListing() {
@@ -26,8 +27,8 @@ export default function BusinessListing() {
           <div className="w-full lg:w-2/3">
 
           {/* Business Banner */}
-        <div className='relative h-98'>
-        <div className="  relative w-full h-84 rounded-lg overflow-hidden mb-8">        
+        {/* <div className='relative h-98'> */}
+        {/* <div className="  relative w-full h-84 rounded-lg overflow-hidden mb-8">        
           <Image 
             src={coachinglogo}
             alt="Rankers Coaching Classes" 
@@ -38,18 +39,35 @@ export default function BusinessListing() {
         </div>
         <div className="absolute bottom-2 left-10 bg-white h-25 w-35 rounded-lg shadow-lg flex justify-center items-center">
             <Image src={coaching} alt="Rankers Logo" width={70} height={70} />
-          </div>   
+          </div>    */}
+    <div className="relative w-full mb-5">
+      <div className="relative">
+        <Image 
+          src={coachinglogo}
+          alt='Rankers Coaching Classes'
+          layout="responsive"
+          className="rounded-lg w-full object-cover"
+        />
+        <div className="absolute inset-0 lg:bottom-30 md:bottom-20 bottom-10 flex items-center justify-center">
+          <h1 className="text-md md:text-xl lg:text-2xl font-semibold text-white text-center px-4">
+            Rankers Coaching Classes - JP Nagar, Bangalore
+          </h1>
         </div>
+        <div className='absolute inset-0 lg:top-55 md:top-30 top-20 flex items-center justify-center'>
+        <Button
+        type="button"
+        className='bg-orange-600/90 text-white  hover:bg-orange-500/90'
+        >
+          Rate this Business
+        </Button>
+        </div>
+      </div>
+    </div>
+          
+        {/* </div> */}
 
-            <h1 className="text-2xl font-semibold text-gray-800 mb-4">Rankers Coaching Classes - JP Nagar, Bangalore</h1>
             
-            <div className="flex items-start text-gray-600 mb-6">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-orange-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <p className="text-sm mt-1">Rathna Mahal, 20th Main Road, Beside Samveet School, 5th Phase, KR Layout, Phase 5 JP Nagar, Bangalore, 560078</p>
-            </div>
+            
             
             <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
               <p className="text-gray-700 mb-4">
@@ -173,6 +191,15 @@ export default function BusinessListing() {
               <div className="h-1 w-full bg-orange-600/90  rounded-full">
             </div>
               <div className="space-y-3">
+              <div className="flex items-center p-3 border-b">
+              <div className="bg-orange-600/90 p-2 rounded-lg mr-3">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              </div>
+              <p className="text-sm mt-1">Rathna Mahal, 20th Main Road, Beside Samveet School, 5th Phase, KR Layout, Phase 5 JP Nagar, Bangalore, 560078</p>
+            </div>
                 <div className="flex items-center p-3 border-b">
                   <div className="bg-orange-600/90 p-2 rounded-lg mr-3">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">

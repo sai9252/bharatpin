@@ -1,10 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactStrictMode: true,
   images: {
-    domains: ['your-domain-if-image-is-external.com'], // Add this if your image is hosted externally
+    remotePatterns: [
+      {
+        protocol: 'https', // or 'http' depending on your image source
+        hostname: 'localhost:3000', // replace with actual domain
+        port: '', // optional
+        pathname: '/path/**', // optional, if you want to restrict to specific paths
+      }
+    ]
   },
 };
 

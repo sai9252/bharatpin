@@ -5,14 +5,15 @@ import OurServices from "./our-services/page";
 import PrivacyPolicy from "./privacy-policy/page";
 import TC from "./TC/page";
 import WhyUs from "./why-us/page";
+import { notFound } from "next/navigation";
 
-export default async function DynamicPage({ params }: { params: { name: string } }) {
-  // Access the dynamic parameter with params.name
-  // In Next.js App Router, we need to await the params
-  const { name } = await params;
+type Params = Promise<{ name: string }>
 
-  // Map the URL segments to the component keys
-  // The keys should match exactly what appears in the URL
+export default async function DynamicPage({ params }: { params: Params }) {
+
+  const  {name}  = await  params;
+
+
   const routeMapping: Record<string, keyof typeof routeContent> = {
     "about-us": "aboutUs",
     "company-description": "companyDescription",
@@ -23,7 +24,6 @@ export default async function DynamicPage({ params }: { params: { name: string }
     "why-us": "whyUs"
   };
 
-  // Define content for each route
   const routeContent = {
     aboutUs: {
       title: "About Us",
@@ -31,7 +31,7 @@ export default async function DynamicPage({ params }: { params: { name: string }
     },
     companyDescription: {
       title: "Company Description",
-      content: <CompanyDescription />
+      content: <CompanyDescription/>
     },
     FAQ: {
       title: "Frequently Asked Questions",
@@ -55,20 +55,11 @@ export default async function DynamicPage({ params }: { params: { name: string }
     }
   };
 
-  // Map the URL param to the correct component key
   const routeKey = routeMapping[name];
   const pageData = routeKey ? routeContent[routeKey] : null;
 
-  // Handle case when page doesn't exist
   if (!pageData) {
-    return (
-      <div className="page-container flex flex-col items-center justify-center h-full">
-        <div className="content text-red-600">
-          <h1>Page Not Found</h1>
-          <p>The page you are looking for does not exist.</p>
-        </div>
-      </div>
-    );
+    return notFound();
   }
 
   return (

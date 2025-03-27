@@ -33,7 +33,7 @@ const Information = () => {
     ].map((item) => (
       <li key={item.label}>
         <Link
-          href={`/${item.path}`}
+          href={`/other-pages/${item.path}`}
           className="hover:text-black hover:font-semibold"
           target="_top"
         >
@@ -49,7 +49,7 @@ const Information = () => {
           className="poppins p-8 hidden md:flex md:flex-col md:items-center md:justify-center 
     lg:flex lg:items-center lg:justify-center lg:flex-col"
         >
-          <Image src={logo} alt="Logo Image" className="w-40 h-12" />
+          <Image src={logo} alt="Logo Image" className="w-40 h-16" />
           <span>Getprolist (Getprolist Info Technologies Pvt.</span>
           <span>Ltd.) digital platform was built to offer business</span>
           <span>information in your locality. yoou can browse</span>
@@ -108,7 +108,7 @@ const Information = () => {
           className="flex items-center justify-center flex-col poppins p-8 
     sm:flex md:hidden lg:hidden"
         >
-          <Image src={logo} alt="Logo Image" className="w-40 h-12" />
+          <Image src={logo} alt="Logo Image" className="w-40 h-16" />
           <span>Getprolist (Getprolist Info Technologies Pvt.</span>
           <span>Ltd.) digital platform was built to offer business</span>
           <span>information in your locality. yoou can browse</span>

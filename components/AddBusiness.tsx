@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import {
   Select,
   SelectContent,
@@ -11,12 +11,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+<<<<<<< HEAD
+=======
+import Cbook from "@/public/Cbook.jpg";
+>>>>>>> dev
 import React from "react";
 import { IoFilterOutline } from "react-icons/io5";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
+import { Input } from "./ui/input";
+
+interface Institute {
+  id: number;
+  name: string;
+  description: string;
+  address: string;
+  logo: string;
+  rating: number;
+  maxRating: number;
+  type: string;
+  fee: string;
+  mode: string;
+  category: string;
+}
 
 const AddBusiness = () => {
   const [activeButton, setActiveButton] = useState("all");
@@ -33,24 +52,12 @@ const AddBusiness = () => {
     online: false,
     offline: false,
   });
-  interface Institute {
-    id: number;
-    name: string;
-    description: string;
-    address: string;
-    logo: string;
-    rating: number;
-    maxRating: number;
-    type: string;
-    fee: string;
-    mode: string;
-    category: string;
-  }
+
 
   const [filteredInstitutes, setFilteredInstitutes] = useState<Institute[]>([]);
   const [showFilterOptions, setShowFilterOptions] = useState(false);
 
-  const institutes = [
+  const institutes = useMemo(() => [
     {
       id: 1,
       name: "Aakash Institute - Bhaskar Nagar, Kakinada",
@@ -86,8 +93,7 @@ const AddBusiness = () => {
       name: "Excel Training Institute - Marathahalli, Bangalore",
       description:
         "Premier training institute for professional development and career growth...",
-      address:
-        "456 Skill Plaza, Marathahalli Main Road, Bangalore - 560037",
+      address: "456 Skill Plaza, Marathahalli Main Road, Bangalore - 560037",
       logo: "/akashLogo.png",
       rating: 5,
       maxRating: 5,
@@ -96,54 +102,59 @@ const AddBusiness = () => {
       mode: "online",
       category: "category",
     },
-  ];
+  ], []);
 
-  useEffect(() => {
-    applyFilters();
-  }, [activeButton]);
-
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     let filtered = [...institutes];
 
     // Apply active button filter
     if (activeButton === "location") {
-      filtered = filtered.filter(institute => institute.category === "location");
+      filtered = filtered.filter(
+        (institute) => institute.category === "location"
+      );
     } else if (activeButton === "category") {
-      filtered = filtered.filter(institute => institute.category === "category");
+      filtered = filtered.filter(
+        (institute) => institute.category === "category"
+      );
     }
 
     // Apply star rating filter
     if (starRating !== "default") {
-      filtered = filtered.filter(institute => institute.rating === parseInt(starRating));
+      filtered = filtered.filter(
+        (institute) => institute.rating === parseInt(starRating)
+      );
     }
 
     // Apply fee collection filter
     if (feeCollection.fullFee && !feeCollection.termFee) {
-      filtered = filtered.filter(institute => institute.fee === "full");
+      filtered = filtered.filter((institute) => institute.fee === "full");
     } else if (!feeCollection.fullFee && feeCollection.termFee) {
-      filtered = filtered.filter(institute => institute.fee === "term");
+      filtered = filtered.filter((institute) => institute.fee === "term");
     }
 
     // Apply institute type filter
     if (instituteType.coachingInstitute && !instituteType.trainingInstitute) {
-      filtered = filtered.filter(institute => institute.type === "coaching");
-    } else if (!instituteType.coachingInstitute && instituteType.trainingInstitute) {
-      filtered = filtered.filter(institute => institute.type === "training");
+      filtered = filtered.filter((institute) => institute.type === "coaching");
+    } else if (
+      !instituteType.coachingInstitute &&
+      instituteType.trainingInstitute
+    ) {
+      filtered = filtered.filter((institute) => institute.type === "training");
     }
 
     // Apply instruction mode filter
     if (instructionMode.online && !instructionMode.offline) {
-      filtered = filtered.filter(institute => institute.mode === "online");
+      filtered = filtered.filter((institute) => institute.mode === "online");
     } else if (!instructionMode.online && instructionMode.offline) {
-      filtered = filtered.filter(institute => institute.mode === "offline");
+      filtered = filtered.filter((institute) => institute.mode === "offline");
     }
 
     setFilteredInstitutes(filtered);
-  };
-
-  const handleFilterButtonClick = () => {
+  }, [activeButton, starRating, feeCollection, instituteType, instructionMode, institutes]);
+  
+  useEffect(() => {
     applyFilters();
-  };
+  }, [activeButton, applyFilters]);
 
   const toggleFilterOptions = () => {
     setShowFilterOptions(!showFilterOptions);
@@ -151,16 +162,29 @@ const AddBusiness = () => {
 
   return (
     <div className="poppins space-y-7 mb-7 mt-5">
+<<<<<<< HEAD
       <div className="flex items-center justify-center">
         <p className="text-sm md:text-base">
           HOME | <span className="text-orange-600/90">Coaching Institute</span>
+=======
+      <div className="relative h-98">
+        <Image
+          src={Cbook}
+          alt="Rankers Coaching Classes"
+          layout="fill"
+          priority
+          className="rounded-lg"
+        />
+        <p className="text-sm md:text-[30px] font-semibold top-10  absolute flex items-center justify-center w-full gap-1">
+          HOME |<span className="text-orange-600/90"> Coaching Institute</span>
+>>>>>>> dev
         </p>
       </div>
       <div className="border border-gray-300 rounded-md p-4 md:p-8 flex flex-col space-y-5">
-        <div className="text-2xl md:text-3xl font-semibold">
+        <div className="text-2x md:text-3xl font-semibold">
           <h1>
             India&apos;s Best Local Search{" "}
-            <span className="text-orange-600">Engine</span>
+            <span className="text-orange-600/90">Engine</span>
           </h1>
         </div>
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 lg:space-x-10">
@@ -170,28 +194,20 @@ const AddBusiness = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="apple">1</SelectItem>
-                <SelectItem value="banana">2</SelectItem>
-                <SelectItem value="blueberry">3</SelectItem>
-                <SelectItem value="grapes">4</SelectItem>
-                <SelectItem value="pineapple">5</SelectItem>
+                <SelectItem value="apple">Apple</SelectItem>
+                <SelectItem value="banana">Banana</SelectItem>
+                <SelectItem value="blueberry">Blueberry</SelectItem>
+                <SelectItem value="grapes">Grapes</SelectItem>
+                <SelectItem value="pineapple">Pineapple</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
 
           <Select>
-            <SelectTrigger className="w-full md:w-[250px]">
-              <SelectValue placeholder="Enter Location" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="apple">KKD</SelectItem>
-                <SelectItem value="banana">Hyderabad</SelectItem>
-                <SelectItem value="blueberry">Chennai</SelectItem>
-                <SelectItem value="grapes">Vijayawada</SelectItem>
-                <SelectItem value="pineapple">Guntur</SelectItem>
-              </SelectGroup>
-            </SelectContent>
+            <Input
+              className="w-full md:w-[250px]"
+              placeholder="Enter Location"
+            />
           </Select>
           <Button className="w-full md:w-52">Search</Button>
         </div>
@@ -210,7 +226,11 @@ const AddBusiness = () => {
         </div>
 
         {/* Filter sidebar */}
-        <div className={`flex flex-col space-y-5 p-4 md:p-10 w-full md:w-[25%] lg:w-[20%] ${showFilterOptions ? 'block' : 'hidden md:block'}`}>
+        <div
+          className={`flex flex-col space-y-5 p-4 md:p-10 w-full md:w-[25%] lg:w-[20%] ${
+            showFilterOptions ? "block" : "hidden md:block"
+          }`}
+        >
           <div className="bg-white shadow-md rounded-lg p-3">
             <div className="flex items-center gap-2 bg-gray-100/90 p-1 px-3 rounded-md">
               <IoFilterOutline className="bg-orange-600/90 text-white rounded-lg h-7 w-7 p-1.5" />
@@ -270,7 +290,14 @@ const AddBusiness = () => {
                 id="fullFee"
                 checked={feeCollection.fullFee}
                 onCheckedChange={(checked) =>
+<<<<<<< HEAD
                   setFeeCollection({ ...feeCollection, fullFee: checked === true })
+=======
+                  setFeeCollection({
+                    ...feeCollection,
+                    fullFee: checked === true,
+                  })
+>>>>>>> dev
                 }
               />
               <div className="grid gap-1.5 leading-none">
@@ -287,7 +314,14 @@ const AddBusiness = () => {
                 id="termFee"
                 checked={feeCollection.termFee}
                 onCheckedChange={(checked) =>
+<<<<<<< HEAD
                   setFeeCollection({ ...feeCollection, termFee: checked === true })
+=======
+                  setFeeCollection({
+                    ...feeCollection,
+                    termFee: checked === true,
+                  })
+>>>>>>> dev
                 }
               />
               <div className="grid gap-1.5 leading-none">
@@ -313,7 +347,14 @@ const AddBusiness = () => {
                 id="coachingInstitute"
                 checked={instituteType.coachingInstitute}
                 onCheckedChange={(checked) =>
+<<<<<<< HEAD
                   setInstituteType({ ...instituteType, coachingInstitute: checked === true })
+=======
+                  setInstituteType({
+                    ...instituteType,
+                    coachingInstitute: checked === true,
+                  })
+>>>>>>> dev
                 }
               />
               <div className="grid gap-1.5 leading-none">
@@ -330,7 +371,14 @@ const AddBusiness = () => {
                 id="trainingInstitute"
                 checked={instituteType.trainingInstitute}
                 onCheckedChange={(checked) =>
+<<<<<<< HEAD
                   setInstituteType({ ...instituteType, trainingInstitute: checked === true })
+=======
+                  setInstituteType({
+                    ...instituteType,
+                    trainingInstitute: checked === true,
+                  })
+>>>>>>> dev
                 }
               />
               <div className="grid gap-1.5 leading-none">
@@ -356,7 +404,14 @@ const AddBusiness = () => {
                 id="online"
                 checked={instructionMode.online}
                 onCheckedChange={(checked) =>
+<<<<<<< HEAD
                   setInstructionMode({ ...instructionMode, online: checked === true })
+=======
+                  setInstructionMode({
+                    ...instructionMode,
+                    online: checked === true,
+                  })
+>>>>>>> dev
                 }
               />
               <div className="grid gap-1.5 leading-none">
@@ -373,7 +428,14 @@ const AddBusiness = () => {
                 id="offline"
                 checked={instructionMode.offline}
                 onCheckedChange={(checked) =>
+<<<<<<< HEAD
                   setInstructionMode({ ...instructionMode, offline: checked === true })
+=======
+                  setInstructionMode({
+                    ...instructionMode,
+                    offline: checked === true,
+                  })
+>>>>>>> dev
                 }
               />
               <div className="grid gap-1.5 leading-none">
@@ -386,6 +448,7 @@ const AddBusiness = () => {
               </div>
             </div>
           </div>
+<<<<<<< HEAD
 
           {/* Apply Filter Button */}
           <Button
@@ -394,6 +457,8 @@ const AddBusiness = () => {
           >
             Apply Filters
           </Button>
+=======
+>>>>>>> dev
         </div>
 
         {/* Content area */}
@@ -403,15 +468,24 @@ const AddBusiness = () => {
             <div className="w-full md:w-[13rem]">
               <Button
                 className={`flex items-center justify-center gap-2 w-full p-1.5 px-3 rounded-md 
+<<<<<<< HEAD
                     ${activeButton === "all"
                     ? "bg-orange-600/90 text-white hover:bg-orange-600/90"
                     : "bg-gray-200 text-black hover:bg-gray-300 "
                   }
+=======
+                    ${
+                      activeButton === "all"
+                        ? "bg-orange-600/90 text-white hover:bg-orange-600/90"
+                        : "bg-gray-200 text-black hover:bg-gray-300 "
+                    }
+>>>>>>> dev
                   `}
                 onClick={() => setActiveButton("all")}
               >
                 All Business
               </Button>
+<<<<<<< HEAD
             </div>
             <div className="w-full md:w-[13rem]">
               <Button
@@ -439,6 +513,37 @@ const AddBusiness = () => {
                 Filter Category
               </Button>
             </div>
+=======
+            </div>
+            <div className="w-full md:w-[13rem]">
+              <Button
+                className={`flex items-center justify-center w-full gap-2 p-1.5 px-3 rounded-md
+                    ${
+                      activeButton === "location"
+                        ? "bg-orange-600/90 text-white hover:bg-orange-600/90"
+                        : "bg-gray-200 text-black hover:bg-gray-300 "
+                    }
+                  `}
+                onClick={() => setActiveButton("location")}
+              >
+                Filter Location
+              </Button>
+            </div>
+            <div className="w-full md:w-[13rem]">
+              <Button
+                className={`flex items-center justify-center w-full gap-2 p-1.5 px-3 rounded-md
+                    ${
+                      activeButton === "category"
+                        ? "bg-orange-600/90 text-white hover:bg-orange-600/90"
+                        : "bg-gray-200 text-black hover:bg-gray-300 "
+                    }
+                  `}
+                onClick={() => setActiveButton("category")}
+              >
+                Filter Category
+              </Button>
+            </div>
+>>>>>>> dev
           </div>
 
           {/* Institute listings */}
@@ -500,7 +605,13 @@ const AddBusiness = () => {
                         {/* Additional info badges */}
                         <div className="flex flex-wrap gap-2 mt-3">
                           <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">
+<<<<<<< HEAD
                             {institute.type === "coaching" ? "Coaching Institute" : "Training Institute"}
+=======
+                            {institute.type === "coaching"
+                              ? "Coaching Institute"
+                              : "Training Institute"}
+>>>>>>> dev
                           </span>
                           <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">
                             {institute.fee === "full" ? "Full Fee" : "Term Fee"}
@@ -517,10 +628,18 @@ const AddBusiness = () => {
                           {[...Array(institute.maxRating)].map((_, i) => (
                             <svg
                               key={i}
+<<<<<<< HEAD
                               className={`w-4 h-4 ${i < institute.rating
                                   ? "text-yellow-400"
                                   : "text-gray-300"
                                 }`}
+=======
+                              className={`w-4 h-4 ${
+                                i < institute.rating
+                                  ? "text-yellow-400"
+                                  : "text-gray-300"
+                              }`}
+>>>>>>> dev
                               aria-hidden="true"
                               xmlns="http://www.w3.org/2000/svg"
                               fill="currentColor"
@@ -530,25 +649,55 @@ const AddBusiness = () => {
                             </svg>
                           ))}
                         </div>
+<<<<<<< HEAD
                         <p className="ml-1 w-10 text-sm text-gray-500">
+=======
+                        <p className="ml-1 text-sm text-gray-500">
+>>>>>>> dev
                           {institute.rating} of {institute.maxRating}
                         </p>
                       </div>
                     </div>
 
                     {/* Contact buttons */}
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
                   </div>
                 ))}
               </div>
             ) : (
               <div className="bg-white rounded-lg shadow-md p-10 text-center">
+<<<<<<< HEAD
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <h3 className="text-xl font-medium text-gray-700 mt-4">No institutes found</h3>
                 <p className="text-gray-500 mt-2">
                   No institutes match your current filter criteria. Please try adjusting your filters.
+=======
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-16 w-16 mx-auto text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <h3 className="text-xl font-medium text-gray-700 mt-4">
+                  No institutes found
+                </h3>
+                <p className="text-gray-500 mt-2">
+                  No institutes match your current filter criteria. Please try
+                  adjusting your filters.
+>>>>>>> dev
                 </p>
                 <Button
                   className="mt-4 bg-orange-600 hover:bg-orange-700 text-white"
@@ -556,7 +705,14 @@ const AddBusiness = () => {
                     setActiveButton("all");
                     setStarRating("default");
                     setFeeCollection({ fullFee: false, termFee: false });
+<<<<<<< HEAD
                     setInstituteType({ coachingInstitute: false, trainingInstitute: false });
+=======
+                    setInstituteType({
+                      coachingInstitute: false,
+                      trainingInstitute: false,
+                    });
+>>>>>>> dev
                     setInstructionMode({ online: false, offline: false });
                     applyFilters();
                   }}
@@ -572,4 +728,4 @@ const AddBusiness = () => {
   );
 };
 
-export default AddBusiness
+export default AddBusiness;

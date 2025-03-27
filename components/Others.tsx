@@ -29,7 +29,7 @@ const Others = () => {
               {pagesData.map((page, index) => (
                 <Link
                   key={index}
-                  href={`/${page.path}`}
+                  href={`/other-pages/${page.path}`}
                   className={`flex items-center gap-1 border-b-2 border-transparent hover:border-b-gray-300 ${
                     currentPath === page.path ? "border-b-orange-600" : ""
                   } p-1`}
