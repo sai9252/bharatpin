@@ -16,14 +16,18 @@ import finalw from "@/public/finalW.jpg";
 import ips from "@/public/ips.png";
 import preksis from "@/public/preksis.png";
 import blackstars from "@/public/blackstars.png";
+import { IoChevronDownCircleOutline } from "react-icons/io5";
+import { FiArrowRightCircle } from "react-icons/fi";
+import hyderabad from "@/public/hyderabad.png";
+import chennai from "@/public/chennai.png";
+import delhi from "@/public/delhi.png";
+import banglore from "@/public/banglore.png";
+import mumbai from "@/public/mumbai.png";
+import kolkata from "@/public/kolkata.png";
 
 import {
   Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 
@@ -34,7 +38,16 @@ import { SearchCheck, Quote, MoveRight, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Input } from "./ui/input";
-import Slider from "react-slick";
+
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { IoLocationSharp } from "react-icons/io5";
 
 const AnimatedCounter = ({
   end,
@@ -204,6 +217,32 @@ const Home = () => {
     { id: 4, name: "Restaurants", icon: "house" },
     { id: 5, name: "Packers and Movers", icon: "paper" },
     { id: 6, name: "Jewellery Shops", icon: "ring" },
+    { id: 7, name: "Coaching Institutes", icon: "teach" },
+    { id: 8, name: "Collages", icon: "boy" },
+    { id: 9, name: "Hospitals & Clinics", icon: "hospital" },
+    { id: 10, name: "Restaurants", icon: "house" },
+    { id: 11, name: "Coaching Institutes", icon: "teach" },
+    { id: 12, name: "Collages", icon: "boy" },
+    { id: 13, name: "Hospitals & Clinics", icon: "hospital" },
+    { id: 14, name: "Restaurants", icon: "house" },
+    { id: 15, name: "Packers and Movers", icon: "paper" },
+    { id: 16, name: "Jewellery Shops", icon: "ring" },
+    { id: 17, name: "Coaching Institutes", icon: "teach" },
+    { id: 18, name: "Collages", icon: "boy" },
+    { id: 19, name: "Hospitals & Clinics", icon: "hospital" },
+    {
+      id: 20,
+      name: "View More",
+      component: (
+        <>
+          {/* Small and medium screens: first icon */}
+          <IoChevronDownCircleOutline className="lg:hidden w-8 h-8" />
+
+          {/* Large screens and up: second icon */}
+          <FiArrowRightCircle className="hidden lg:block w-8 h-8" />
+        </>
+      ),
+    },
   ];
 
   useEffect(() => {
@@ -321,15 +360,15 @@ const Home = () => {
             <Image
               src={card.imageSrc}
               alt={card.name}
-              layout="fill"
-              objectFit="contain"
+              fill
+              style={{ objectFit: "contain" }}
             />
           ) : (
             <Image
               src={card.imageSrc}
               alt={card.name}
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover" }}
             />
           )}
         </div>
@@ -344,17 +383,9 @@ const Home = () => {
     </div>
   );
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 8,
-    slidesToScroll: 2,
-  };
-
   return (
     <div className="poppins space-y-5 mt-5">
-      <div className="flex h-[18rem] gap-4 justify-center">
+      <div className="md:flex hidden h-[18rem] gap-4 justify-center">
         {/* Large Image (Takes 50% width) */}
         <div className="lg:flex-[2] md:hidden lg:flex sm:flex w-full items-center relative justify-center">
           <Image
@@ -372,6 +403,7 @@ const Home = () => {
             </p>
           </div>
         </div>
+        
 
         {/* Smaller Image 1 (Takes 25% width) */}
         <div className="lg:flex-1 md:flex items-center justify-center md:relative hidden">
@@ -399,115 +431,133 @@ const Home = () => {
       </div>
 
       <div className="border border-gray-300 rounded-md p-4 md:p-8 flex flex-col space-y-5">
-        <div className="text-2x md:text-3xl font-semibold">
+        <div className="text-2x md:text-3xl font-semibold md:flex hidden">
           <h1>
             India&apos;s Best Local Search{" "}
             <span className="text-orange-600/90">Engine</span>
           </h1>
         </div>
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 lg:space-x-10">
-          <Select>
-            <SelectTrigger className="w-full md:w-[250px]">
-              <SelectValue placeholder="Services" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
-              </SelectGroup>
-            </SelectContent>
+       
+        <div className="flex flex-col  md:flex-row space-y-4 md:space-y-0 md:space-x-4 lg:space-x-5">
+        <div className="md:flex flex-col lg:flex-row space-y-2 ">
+          <div className="space-y-2 md:flex space-x-4 h-full items-center">
+        <Select>
+          <div className="flex justify-center items-center border rounded-lg px-2">
+        <IoLocationSharp />
+            <Input
+              className="w-full md:w-[250px] border-0"
+              placeholder="Select Location"
+              />
+              </div>
           </Select>
 
           <Select>
+          <div className="flex justify-center items-center border rounded-lg px-2">
             <Input
-              className="w-full md:w-[250px]"
-              placeholder="Enter Location"
+              className="w-full md:w-[250px]  border-0"
+              placeholder="Type Something...."
             />
+            </div>
           </Select>
-          <Button className="w-full md:w-52">Search</Button>
+          </div>
+          <div className="flex items-center justify-center md:justify-start md:items-start pt-1 w-full">
+          <Button className="w-40 bg-orange-600/90 text-white hover:bg-orange-600/90 cursor-pointer">Search</Button>
+          </div>
+          </div>
         </div>
       </div>
 
-      <div className="flex flex-col space-y-10 mx-5">
-        <div>
+      <div className="flex flex-col space-y-10 mx-5 ">
+        <div className="">
           {/* Small screens (2 columns, 3 rows) */}
-          <div className="grid grid-cols-2 gap-4 md:hidden">
+          <div className="grid grid-cols-5 gap-4 md:hidden ">
             {categories.map((category) => (
               <div
                 key={category.id}
-                className="flex flex-col items-center text-center"
+                className="flex flex-col items-center text-center justify-top cursor-pointer "
               >
-                <div className="w-24 h-24 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300  hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
-                  <Image
-                    src={getImageUrl(category.icon)}
-                    alt={`${category.name} icon`}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <span className="mt-2 text-sm">{category.name}</span>
+                {category.component ? (
+                  <div className="text-xs flex flex-col items-center text-center justify-top gap-3 cursor-pointer mr-4 ">
+                    <div className="w-10 h-10 border  border-gray-400 rounded-full p-[3px]  shadow-md transition-shadow duration-300 hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
+                      {category.component}
+                    </div>
+                    {category.name}
+                  </div>
+                ) : (
+                  <>
+                    <div className="w-12 h-12  border border-gray-400 rounded-lg p-2 shadow-md transition-shadow duration-300  hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
+                      <Image
+                        src={getImageUrl(category.icon)}
+                        alt={`${category.name} icon`}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="mt-2 text-xs">{category.name}</span>
+                  </>
+                )}
               </div>
             ))}
           </div>
 
-          {/* Medium screens (3 columns, 2 rows) */}
-          <div className="hidden md:grid lg:hidden grid-cols-3 gap-6">
+          {/* Medium screens (4 columns, 2 rows) */}
+          <div className="hidden md:grid lg:hidden grid-cols-6 gap-4">
             {categories.map((category) => (
               <div
                 key={category.id}
-                className="flex flex-col items-center text-center"
+                className="flex flex-col items-center text-center justify-top cursor-pointer"
               >
-                <div className="w-28 h-28 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300  hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
-                  <Image
-                    src={getImageUrl(category.icon)}
-                    alt={`${category.name} icon`}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <span className="mt-3 text-sm">{category.name}</span>
+                {category.component ? (
+                  <div className="text-sm flex flex-col items-center text-center justify-center gap-3 cursor-pointer mr-4 mt-3 ">
+                    <div className="w-11 h-11 border  border-gray-400 rounded-full p-[5px]  shadow-md transition-shadow duration-300 hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
+                      {category.component}
+                    </div>
+                    {category.name}
+                  </div>
+                ) : (
+                  <>
+                    <div className="w-18 h-18 border border-gray-400  rounded-lg p-5 shadow-md transition-shadow duration-300  hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
+                      <Image
+                        src={getImageUrl(category.icon)}
+                        alt={`${category.name} icon`}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="mt-3 text-sm">{category.name}</span>
+                  </>
+                )}
               </div>
             ))}
           </div>
 
           {/* Large screens (6 columns, 1 row) */}
-          <div className="hidden lg:flex justify-between items-center">
+          <div className="hidden lg:grid grid-cols-10 justify-center space-x-4 p-3 space-y-6 items-center">
             {categories.map((category) => (
               <div
                 key={category.id}
-                className="flex flex-col items-center text-center"
+                className="flex flex-col items-center text-center justify-top h-[8rem]  cursor-pointer"
               >
-                <div className="w-24 h-24 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
-                  <Image
-                    src={getImageUrl(category.icon)}
-                    alt={`${category.name} icon`}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <span className="mt-3 text-sm">{category.name}</span>
+                {category.component ? (
+                  <div className="text-sm flex flex-col items-center text-center justify-top gap-2 cursor-pointer mr-8  ">
+                    <div className="w-14 h-14 border  border-gray-400 rounded-full p-[11px]  shadow-md transition-shadow duration-300 hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
+                      {category.component}
+                    </div>
+                    {category.name}
+                  </div>
+                ) : (
+                  <>
+                    <div className="w-20 h-20 border  border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
+                      <Image
+                        src={getImageUrl(category.icon)}
+                        alt={`${category.name} icon`}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="mt-3 text-sm">{category.name}</span>
+                  </>
+                )}
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Large screens (6 columns, 1 row) */}
-        <div className="hidden lg:flex justify-between items-center">
-          {categories.map((category) => (
-            <div
-              key={category.id}
-              className="flex flex-col items-center text-center"
-            >
-              <div className="w-24 h-24 border border-gray-400 rounded-lg p-5 shadow-md transition-shadow duration-300 hover:shadow-[6px_6px_12px_rgba(255,100,100,0.3)]">
-                <Image
-                  src={getImageUrl(category.icon)}
-                  alt={`${category.name} icon`}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <span className="mt-3 text-sm">{category.name}</span>
-            </div>
-          ))}
         </div>
       </div>
 
@@ -566,30 +616,52 @@ const Home = () => {
 
       <h1 className=" md:text-2xl text-xl  font-semibold">Recent Listed</h1>
 
-        <div  className="w-full m-auto">
-        <Slider {...settings} className="bg-gray-200/90 p-3 rounded-xl">
-            {cards.map((card) => (
-              <div
-                key={card.id}
-                className="flex-shrink-0 md:w-40 w-48 border  border-gray-300 bg-gray-100 p-2 pb-8 rounded-2xl space-y-3"
-              >
-                <Image
-                  src={slam}
-                  alt="Slam Logo"
-                  className="w-52 h-40 rounded-2xl"
-                />
-                <p className="underline text-sm break-words">{card.username}</p>
-                <a href="/Explore" className="flex gap-1 text-sm items-center">
-                  Explore more
-                  <MoveRight
-                    className="text-orange-600 flex items-center"
-                    size={16}
-                  />
-                </a>
-              </div>
+      <div className="w-full m-auto">
+        <Carousel
+          opts={{
+            align: "start",
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="w-[50rem]" >
+            {cards.map((card, index) => (
+              <CarouselItem key={index} className="basis-1/3">
+                <div className="w-56">
+                  <Card className="w-56">
+                    <CardContent className="flex aspect-square items-center justify-center w-56">
+                      <div
+                        key={card.id}
+                        className="flex-shrink-0 md:w-44 w-48 border  border-gray-300 bg-gray-100 p-2 pb-8 rounded-2xl space-y-3"
+                      >
+                        <Image
+                          src={slam}
+                          alt="Slam Logo"
+                          className="w-52 h-40 rounded-2xl"
+                        />
+                        <p className="underline text-sm break-words">
+                          {card.username}
+                        </p>
+                        <a
+                          href="/Explore"
+                          className="flex gap-1 text-sm items-center"
+                        >
+                          Explore more
+                          <MoveRight
+                            className="text-orange-600 flex items-center"
+                            size={16}
+                          />
+                        </a>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </CarouselItem>
             ))}
-            </Slider>
-          </div>
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </div>
 
       <div className="flex justify-between items-center pt-5">
         <h1 className="md:text-2xl text-xl  font-semibold">Popular Cities</h1>
@@ -599,7 +671,7 @@ const Home = () => {
         </Link>
       </div>
 
-      <div className="flex items-center justify-evenly relative md:p-10 border border-gray-300 rounded-2xl">
+      <div className="flex items-center justify-evenly relative  border border-gray-300 rounded-2xl">
         <div className="flex justify-center">
           <div className="md:w-40 md:h-40 w-20 h-20 rounded-full bg-teal-200 bg-opacity-30 absolute md:mr-32 mr-16"></div>
           <Image
@@ -608,48 +680,88 @@ const Home = () => {
             className="md:w-60 md:h-60 w-30 h-30 m-5 relative "
           />
         </div>
-        <div className="md:flex justify-around w-[60%] space-y-5 ">
-          <div className="flex md:flex-col items-center md:justify-center md:space-y-10  justify-around py-5 ">
-            <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
-              Hyderabad
-              <span className="md:text-[18px] text-[14px] text-orange-600/90 font-medium">
-                790 lisitings
-              </span>
-            </p>
-            <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
-              Pune
-              <span className="md:text-[18px] text-[14px] text-orange-600/90  font-medium">
-                615 lisitings
-              </span>
-            </p>
+        <div className=" w-[60%] flex md:flex-col pb-5">
+          <div className="flex w-full ">
+            <div className="flex w-full flex-col md:flex-row items-top md:space-y-12 justify-evenly ">
+              <div className="flex flex-col items-center justify-center  pt-10">
+                <Image src={hyderabad} alt="hyd logo" width={80} height={80} className=""/>
+                <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
+                  Hyderabad
+                  <span className="md:text-[18px] text-[14px] text-orange-600/90 font-medium">
+                    790 lisitings
+                  </span>
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center justify-center mt-7">
+                <Image
+                  src={mumbai}
+                  alt="mumbai logo"
+                  width={60}
+                  height={80}
+                  className="mt-8"
+                />
+                <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
+                  Mumbai
+                  <span className="md:text-[18px] text-[14px] text-orange-600/90  font-medium">
+                    529 lisitings
+                  </span>
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center justify-center md:pt-3 pt-15">
+                <Image src={delhi} alt="delhi logo" width={60} height={80} />
+                <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
+                  New Delhi
+                  <span className="md:text-[18px] text-[14px] text-orange-600/90  font-medium">
+                    734 lisitings
+                  </span>
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="flex md:flex-col items-center md:justify-center md:space-y-10 justify-around ">
-            <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
-              Mumbai
-              <span className="md:text-[18px] text-[14px] text-orange-600/90  font-medium">
-                529 lisitings
-              </span>
-            </p>
-            <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
-              Banglore
-              <span className="md:text-[18px] text-[14px] text-orange-600/90  font-medium">
-                1597 lisitings
-              </span>
-            </p>
-          </div>
-          <div className="flex md:flex-col items-center md:justify-center md:space-y-10  justify-around py-5 ">
-            <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
-              Kolkota
-              <span className="md:text-[18px] text-[14px]  text-orange-600/90  font-medium">
-                629 lisitings
-              </span>
-            </p>
-            <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
-              New Delhi
-              <span className="md:text-[18px] text-[14px] text-orange-600/90  font-medium">
-                734 lisitings
-              </span>
-            </p>
+          <div className="flex w-full">
+            <div className="md:flex flex-col md:flex-row w-full  items-top md:space-y-12  justify-evenly">
+              <div className="flex flex-col items-center justify-center md:pt-17 pt-15">
+                <Image src={chennai} alt="pune logo" width={60} height={80} />
+                <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
+                  Chennai
+                  <span className="md:text-[18px] text-[14px] text-orange-600/90  font-medium">
+                    615 lisitings
+                  </span>
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center justify-center md:mt-14.5 mt-12.5">
+                <Image
+                  src={banglore}
+                  alt="banglore logo"
+                  width={70}
+                  height={80}
+                />
+                <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
+                  Banglore
+                  <span className="md:text-[18px] text-[14px] text-orange-600/90  font-medium">
+                    1597 lisitings
+                  </span>
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center justify-center md:mt-0 mt-10">
+                <Image
+                  src={kolkata}
+                  alt="kolkata logo"
+                  width={80}
+                  height={80}
+                />
+                <p className="flex flex-col font-semibold lg:text-2xl md:text-xl text-md items-center gap-2">
+                  Kolkota
+                  <span className="md:text-[18px] text-[14px]  text-orange-600/90  font-medium">
+                    629 lisitings
+                  </span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -685,52 +797,50 @@ const Home = () => {
             <Image
               src={blackstars}
               alt="stars Logo"
-              className="absolute rotate-180 left-30 md:left-40 lg:left-55 "
+              className="absolute rotate-180 left-30 md:left-40 lg:left-60  "
             />
             <Image
               src={finalw}
               alt="FinalW Logo"
-              className="object-contain lg:w-[18rem] md:w-[14rem] w-[10rem] border-2 border-yellow-400 rounded-t-full "
+              className="w-[10rem] sm:w-[12rem] md:w-[14rem] lg:w-[18rem] xl:w-[20rem] border border-yellow-400 rounded-t-full "
             />
           </div>
-          <div className="flex justify-center items-center md:w-1/3 p-4">
-            <p className="flex font-semibold flex-col text-center">
-              <span className="lg:text-4xl md:text-3xl sm:text-2xl text-xl ">
-                TOP RATED
-              </span>
-              <span className="font-normal lg:text-lg md:text-base sm:text-sm text-xs md:mt-2 mt-0 px-4">
-                Love fiercely, live fully, and embrace every moment as if it
-                were your last. In the tapestry of life, make every thread
-                count.
-              </span>
-            </p>
+          <div className="flex justify-center items-center w-full md:w-1/3 p-2 sm:p-4">
+          <div className="flex font-semibold flex-col text-center">
+            <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl">TOP RATED</span>
+            <span className="font-normal text-xs sm:text-sm md:text-base lg:text-lg mt-1 md:mt-2 px-2 sm:px-4">
+              Love fiercely, live fully, and embrace every moment as if it were your last. In the tapestry of life, make
+              every thread count.
+            </span>
           </div>
+        </div>
+        
           <div className="flex flex-row md:flex-col lg:flex-row gap-6 justify-center items-center">
-            <div className="border border-gray-300 rounded-full p-2 md:p-3 lg:p-4 h-20 w-20 md:h-25 md:w-25 lg:h-30 lg:w-30 flex items-center justify-center">
+            <div className="border border-gray-300 rounded-full p-2 md:p-3 lg:p-4 h-25 w-25 md:h-30 md:w-30 lg:h-40 lg:w-40  flex items-center justify-center">
               <Image
                 src={preksis}
                 alt="Preksis Logo"
                 width={80}
                 height={80}
-                className="w-3/4 h-3/4 object-contain"
+                className="md:w-30 md:h-30 w-20 h-20 object-contain md:ml-5 ml-3 "
               />
             </div>
-            <div className="border border-gray-300 rounded-full p-2 md:p-3 lg:p-4 h-20 w-20 md:h-25 md:w-25 lg:h-30 lg:w-30 flex items-center justify-center">
+            <div className="border border-gray-300 rounded-full p-2 md:p-3 lg:p-4 h-25 w-25 md:h-30 md:w-30 lg:h-40 lg:w-40  flex items-center justify-center">
               <Image
                 src={ips}
                 alt="IPS Logo"
                 width={80}
                 height={80}
-                className="w-3/4 h-3/4 object-contain rounded-full"
+                className="md:w-30 md:h-30 w-20 h-20 object-contain rounded-full"
               />
             </div>
-            <div className="border border-gray-300 rounded-full p-2 md:p-3 lg:p-4 h-20 w-20 md:h-25 md:w-25 lg:h-30 lg:w-30 flex items-center justify-center">
+            <div className="border border-gray-300 rounded-full p-2 md:p-3 lg:p-4 h-25 w-25 md:h-30 md:w-30 lg:h-40 lg:w-40 flex items-center justify-center">
               <Image
                 src={ips}
                 alt="IPS Logo"
-                width={80}
-                height={80}
-                className="w-3/4 h-3/4 object-contain rounded-full"
+                width={100}
+                height={100}
+                className="md:w-30 md:h-30 w-20 h-20 object-contain rounded-full"
               />
             </div>
           </div>

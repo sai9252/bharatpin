@@ -3,17 +3,10 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useCallback, useMemo } from "react";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select } from "@/components/ui/select";
 import Cbook from "@/public/Cbook.jpg";
 import React from "react";
-import { IoFilterOutline } from "react-icons/io5";
+import { IoFilterOutline, IoLocationSharp } from "react-icons/io5";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -50,56 +43,58 @@ const AddBusiness = () => {
     offline: false,
   });
 
-
   const [filteredInstitutes, setFilteredInstitutes] = useState<Institute[]>([]);
   const [showFilterOptions, setShowFilterOptions] = useState(false);
 
-  const institutes = useMemo(() => [
-    {
-      id: 1,
-      name: "Aakash Institute - Bhaskar Nagar, Kakinada",
-      description:
-        "Aakash India's Best Coaching for NEET (UG), IIT JEE Mains, JEE Advanced...",
-      address:
-        "Door No. 24349 & 24310, Lakshmi Towers, Block 2, 5D Building Corner - Bhaskar Nagar, Kakinada - 533003",
-      logo: "/akashLogo.png",
-      rating: 3,
-      maxRating: 5,
-      type: "coaching",
-      fee: "full",
-      mode: "offline",
-      category: "all",
-    },
-    {
-      id: 2,
-      name: "Rankers Coaching Classes - JP Nagar, Bangalore",
-      description:
-        "1+ year in classes business with best results. Rankers Coaching Classes...",
-      address:
-        "Rathna Mahal, 20th Main Road, Beside Samved School, 5th Phase, KR Layout, Phase 5 - JP Nagar, Bangalore - 560078",
-      logo: "/coaching.jpg",
-      rating: 4,
-      maxRating: 5,
-      type: "coaching",
-      fee: "term",
-      mode: "online",
-      category: "location",
-    },
-    {
-      id: 3,
-      name: "Excel Training Institute - Marathahalli, Bangalore",
-      description:
-        "Premier training institute for professional development and career growth...",
-      address: "456 Skill Plaza, Marathahalli Main Road, Bangalore - 560037",
-      logo: "/akashLogo.png",
-      rating: 5,
-      maxRating: 5,
-      type: "training",
-      fee: "full",
-      mode: "online",
-      category: "category",
-    },
-  ], []);
+  const institutes = useMemo(
+    () => [
+      {
+        id: 1,
+        name: "Aakash Institute - Bhaskar Nagar, Kakinada",
+        description:
+          "Aakash India's Best Coaching for NEET (UG), IIT JEE Mains, JEE Advanced...",
+        address:
+          "Door No. 24349 & 24310, Lakshmi Towers, Block 2, 5D Building Corner - Bhaskar Nagar, Kakinada - 533003",
+        logo: "/akashLogo.png",
+        rating: 3,
+        maxRating: 5,
+        type: "coaching",
+        fee: "full",
+        mode: "offline",
+        category: "all",
+      },
+      {
+        id: 2,
+        name: "Rankers Coaching Classes - JP Nagar, Bangalore",
+        description:
+          "1+ year in classes business with best results. Rankers Coaching Classes...",
+        address:
+          "Rathna Mahal, 20th Main Road, Beside Samved School, 5th Phase, KR Layout, Phase 5 - JP Nagar, Bangalore - 560078",
+        logo: "/coaching.jpg",
+        rating: 4,
+        maxRating: 5,
+        type: "coaching",
+        fee: "term",
+        mode: "online",
+        category: "location",
+      },
+      {
+        id: 3,
+        name: "Excel Training Institute - Marathahalli, Bangalore",
+        description:
+          "Premier training institute for professional development and career growth...",
+        address: "456 Skill Plaza, Marathahalli Main Road, Bangalore - 560037",
+        logo: "/akashLogo.png",
+        rating: 5,
+        maxRating: 5,
+        type: "training",
+        fee: "full",
+        mode: "online",
+        category: "category",
+      },
+    ],
+    []
+  );
 
   const applyFilters = useCallback(() => {
     let filtered = [...institutes];
@@ -147,8 +142,15 @@ const AddBusiness = () => {
     }
 
     setFilteredInstitutes(filtered);
-  }, [activeButton, starRating, feeCollection, instituteType, instructionMode, institutes]);
-  
+  }, [
+    activeButton,
+    starRating,
+    feeCollection,
+    instituteType,
+    instructionMode,
+    institutes,
+  ]);
+
   useEffect(() => {
     applyFilters();
   }, [activeButton, applyFilters]);
@@ -171,36 +173,41 @@ const AddBusiness = () => {
           HOME |<span className="text-orange-600/90"> Coaching Institute</span>
         </p>
       </div>
+
       <div className="border border-gray-300 rounded-md p-4 md:p-8 flex flex-col space-y-5">
-        <div className="text-2x md:text-3xl font-semibold">
+        <div className="text-2x md:text-3xl font-semibold md:flex hidden">
           <h1>
             India&apos;s Best Local Search{" "}
             <span className="text-orange-600/90">Engine</span>
           </h1>
         </div>
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 lg:space-x-10">
-          <Select>
-            <SelectTrigger className="w-full md:w-[250px]">
-              <SelectValue placeholder="Services" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
 
-          <Select>
-            <Input
-              className="w-full md:w-[250px]"
-              placeholder="Enter Location"
-            />
-          </Select>
-          <Button className="w-full md:w-52">Search</Button>
+        <div className="flex flex-col  md:flex-row space-y-4 md:space-y-0 md:space-x-4 lg:space-x-5">
+          <div className="md:flex flex-col lg:flex-row space-y-2 ">
+            <div className="space-y-2 md:flex space-x-4 h-full items-center">
+              <Select>
+                <div className="flex justify-center items-center border rounded-lg px-2">
+                  <IoLocationSharp />
+                  <Input
+                    className="w-full md:w-[250px] border-0"
+                    placeholder="Select Location"
+                  />
+                </div>
+              </Select>
+
+              <Select>
+                <div className="flex justify-center items-center border rounded-lg px-2">
+                  <Input
+                    className="w-full md:w-[250px]  border-0"
+                    placeholder="Type Something...."
+                  />
+                </div>
+              </Select>
+            </div>
+            <div className="flex items-center justify-center md:justify-start md:items-start pt-1 w-full">
+              <Button className="w-40  cursor-pointer">Search</Button>
+            </div>
+          </div>
         </div>
       </div>
 
