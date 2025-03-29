@@ -352,9 +352,8 @@ const Home = () => {
     >
       <div className="relative w-full h-32">
         <div
-          className={`absolute inset-0 ${
-            card.dark ? "bg-gray-900" : "bg-white"
-          } flex items-center justify-center`}
+          className={`absolute inset-0 ${card.dark ? "bg-gray-900" : "bg-white"
+            } flex items-center justify-center`}
         >
           {card.dark ? (
             <Image
